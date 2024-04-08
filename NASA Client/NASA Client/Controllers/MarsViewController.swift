@@ -9,22 +9,31 @@ import UIKit
 import SnapKit
 
 class MarsViewController: UIViewController {
-    
-    var aa = UILabel(text: "LargeTitle", fontType: .body)
 
+//    let toSecondVC = UIButton()
+    private let marsView = MarsView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
-        
-        view.addSubview(aa)
-        
-        aa.snp.makeConstraints {
-            $0.centerY.equalToSuperview()
-            $0.centerX.equalToSuperview()
-        }
+        view.backgroundColor = .backgroundOne
+        view = marsView
+//        toSecondVC.setImage(UIImage(systemName: "xmark"), for: .normal)
+//        toSecondVC.addTarget(self, action: #selector(toSecondVCTapped), for: .touchUpInside)
+//        view.addSubview(toSecondVC)
+//        toSecondVC.snp.makeConstraints {
+//            $0.centerX.equalTo(view.snp.centerX)
+//            $0.centerY.equalTo(view.snp.centerY)
+//        }
 
 //        checkFonts()
+        
+        setupViews()
     }
+//    
+//    @objc
+//    private func toSecondVCTapped() {
+//        navigationController?.pushViewController(HistoryViewController(), animated: true)
+//    }
     
     //to check custom fonts family
     private func checkFonts() {
@@ -33,15 +42,22 @@ class MarsViewController: UIViewController {
             print("Family: \(family) Font names: \(names)")
         }
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    
+    private func setupViews() {
+//        createCustomNavigationBar()
+//        
+//        let customTitleView = createCustomTitleView(title: "MARS.CAMERA", description: "June 6, 2019")
+//        navigationItem.titleView = customTitleView
+//        
+//        let calendarButton = createCustomButton(imageName: .calendar, selector: #selector(calendarButtonTapped))
+        
     }
-    */
+    
+//    @objc
+//    private func calendarButtonTapped() {
+//        print("calendarButtonTapped")
+//    }
+
+    
 
 }
