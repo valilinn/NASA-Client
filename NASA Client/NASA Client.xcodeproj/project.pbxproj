@@ -10,9 +10,16 @@
 		19EB938467EB9E0AFC9BB086 /* Pods_NASA_Client.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B06E05F58C93054BA129723D /* Pods_NASA_Client.framework */; };
 		EA2DE4CE2BC3DA2C002A8DBC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2DE4CD2BC3DA2C002A8DBC /* AppDelegate.swift */; };
 		EA2DE4D02BC3DA2C002A8DBC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2DE4CF2BC3DA2C002A8DBC /* SceneDelegate.swift */; };
-		EA2DE4D22BC3DA2C002A8DBC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2DE4D12BC3DA2C002A8DBC /* ViewController.swift */; };
+		EA2DE4D22BC3DA2C002A8DBC /* PreloaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2DE4D12BC3DA2C002A8DBC /* PreloaderViewController.swift */; };
 		EA2DE4D72BC3DA30002A8DBC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA2DE4D62BC3DA30002A8DBC /* Assets.xcassets */; };
 		EA2DE4DA2BC3DA30002A8DBC /* Base in Resources */ = {isa = PBXBuildFile; fileRef = EA2DE4D92BC3DA30002A8DBC /* Base */; };
+		EAE930AB2BC3ED54006A2ABC /* PreloaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE930AA2BC3ED54006A2ABC /* PreloaderView.swift */; };
+		EAE930AE2BC3EFCA006A2ABC /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = EAE930AD2BC3EFCA006A2ABC /* Lottie */; };
+		EAE930B22BC3FA98006A2ABC /* SF-Pro.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EAE930B02BC3FA98006A2ABC /* SF-Pro.ttf */; };
+		EAE930B32BC3FA98006A2ABC /* SF-Pro-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EAE930B12BC3FA98006A2ABC /* SF-Pro-Italic.ttf */; };
+		EAE930B52BC3FD50006A2ABC /* MarsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE930B42BC3FD50006A2ABC /* MarsViewController.swift */; };
+		EAE930B72BC40141006A2ABC /* UILabel_Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE930B62BC40141006A2ABC /* UILabel_Extension.swift */; };
+		EAE930BC2BC40610006A2ABC /* loader.json in Resources */ = {isa = PBXBuildFile; fileRef = EAE930BB2BC4060F006A2ABC /* loader.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,10 +28,16 @@
 		EA2DE4CA2BC3DA2C002A8DBC /* NASA Client.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "NASA Client.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA2DE4CD2BC3DA2C002A8DBC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EA2DE4CF2BC3DA2C002A8DBC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		EA2DE4D12BC3DA2C002A8DBC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		EA2DE4D12BC3DA2C002A8DBC /* PreloaderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreloaderViewController.swift; sourceTree = "<group>"; };
 		EA2DE4D62BC3DA30002A8DBC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EA2DE4D92BC3DA30002A8DBC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EA2DE4DB2BC3DA30002A8DBC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EAE930AA2BC3ED54006A2ABC /* PreloaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreloaderView.swift; sourceTree = "<group>"; };
+		EAE930B02BC3FA98006A2ABC /* SF-Pro.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro.ttf"; sourceTree = "<group>"; };
+		EAE930B12BC3FA98006A2ABC /* SF-Pro-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Italic.ttf"; sourceTree = "<group>"; };
+		EAE930B42BC3FD50006A2ABC /* MarsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarsViewController.swift; sourceTree = "<group>"; };
+		EAE930B62BC40141006A2ABC /* UILabel_Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILabel_Extension.swift; sourceTree = "<group>"; };
+		EAE930BB2BC4060F006A2ABC /* loader.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loader.json; sourceTree = "<group>"; };
 		FE62C2F68B70A5758BD31290 /* Pods-NASA Client.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NASA Client.debug.xcconfig"; path = "Target Support Files/Pods-NASA Client/Pods-NASA Client.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -34,6 +47,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				19EB938467EB9E0AFC9BB086 /* Pods_NASA_Client.framework in Frameworks */,
+				EAE930AE2BC3EFCA006A2ABC /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,12 +77,50 @@
 			children = (
 				EA2DE4CD2BC3DA2C002A8DBC /* AppDelegate.swift */,
 				EA2DE4CF2BC3DA2C002A8DBC /* SceneDelegate.swift */,
-				EA2DE4D12BC3DA2C002A8DBC /* ViewController.swift */,
+				EAE930BA2BC4058D006A2ABC /* Views */,
+				EAE930B92BC4057B006A2ABC /* Controllers */,
+				EAE930B82BC40149006A2ABC /* ViewExtensions */,
 				EA2DE4D62BC3DA30002A8DBC /* Assets.xcassets */,
+				EAE930AF2BC3FA84006A2ABC /* Fonts */,
 				EA2DE4D82BC3DA30002A8DBC /* LaunchScreen.storyboard */,
 				EA2DE4DB2BC3DA30002A8DBC /* Info.plist */,
+				EAE930BB2BC4060F006A2ABC /* loader.json */,
 			);
 			path = "NASA Client";
+			sourceTree = "<group>";
+		};
+		EAE930AF2BC3FA84006A2ABC /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				EAE930B12BC3FA98006A2ABC /* SF-Pro-Italic.ttf */,
+				EAE930B02BC3FA98006A2ABC /* SF-Pro.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		EAE930B82BC40149006A2ABC /* ViewExtensions */ = {
+			isa = PBXGroup;
+			children = (
+				EAE930B62BC40141006A2ABC /* UILabel_Extension.swift */,
+			);
+			path = ViewExtensions;
+			sourceTree = "<group>";
+		};
+		EAE930B92BC4057B006A2ABC /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				EA2DE4D12BC3DA2C002A8DBC /* PreloaderViewController.swift */,
+				EAE930B42BC3FD50006A2ABC /* MarsViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		EAE930BA2BC4058D006A2ABC /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				EAE930AA2BC3ED54006A2ABC /* PreloaderView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		EFBBCFCAF22795FE2530FBF0 /* Pods */ = {
@@ -106,6 +158,9 @@
 			dependencies = (
 			);
 			name = "NASA Client";
+			packageProductDependencies = (
+				EAE930AD2BC3EFCA006A2ABC /* Lottie */,
+			);
 			productName = "NASA Client";
 			productReference = EA2DE4CA2BC3DA2C002A8DBC /* NASA Client.app */;
 			productType = "com.apple.product-type.application";
@@ -134,6 +189,9 @@
 				Base,
 			);
 			mainGroup = EA2DE4C12BC3DA2C002A8DBC;
+			packageReferences = (
+				EAE930AC2BC3EFCA006A2ABC /* XCRemoteSwiftPackageReference "lottie-ios" */,
+			);
 			productRefGroup = EA2DE4CB2BC3DA2C002A8DBC /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -149,7 +207,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				EA2DE4D72BC3DA30002A8DBC /* Assets.xcassets in Resources */,
+				EAE930B22BC3FA98006A2ABC /* SF-Pro.ttf in Resources */,
 				EA2DE4DA2BC3DA30002A8DBC /* Base in Resources */,
+				EAE930BC2BC40610006A2ABC /* loader.json in Resources */,
+				EAE930B32BC3FA98006A2ABC /* SF-Pro-Italic.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -202,9 +263,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EA2DE4D22BC3DA2C002A8DBC /* ViewController.swift in Sources */,
+				EA2DE4D22BC3DA2C002A8DBC /* PreloaderViewController.swift in Sources */,
 				EA2DE4CE2BC3DA2C002A8DBC /* AppDelegate.swift in Sources */,
 				EA2DE4D02BC3DA2C002A8DBC /* SceneDelegate.swift in Sources */,
+				EAE930B52BC3FD50006A2ABC /* MarsViewController.swift in Sources */,
+				EAE930B72BC40141006A2ABC /* UILabel_Extension.swift in Sources */,
+				EAE930AB2BC3ED54006A2ABC /* PreloaderView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -421,6 +485,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		EAE930AC2BC3EFCA006A2ABC /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-ios.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.4.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		EAE930AD2BC3EFCA006A2ABC /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EAE930AC2BC3EFCA006A2ABC /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			productName = Lottie;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = EA2DE4C22BC3DA2C002A8DBC /* Project object */;
 }

@@ -20,7 +20,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         window = UIWindow(windowScene: scene)
         window?.makeKeyAndVisible()
-        window?.rootViewController = UINavigationController(rootViewController: ViewController())
+        window?.rootViewController = UINavigationController(rootViewController: PreloaderViewController())
+//        window?.rootViewController = UINavigationController(rootViewController: MarsViewController())
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
