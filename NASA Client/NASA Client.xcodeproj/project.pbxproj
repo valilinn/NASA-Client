@@ -7,23 +7,25 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		19EB938467EB9E0AFC9BB086 /* Pods_NASA_Client.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B06E05F58C93054BA129723D /* Pods_NASA_Client.framework */; };
 		EA2DE4CE2BC3DA2C002A8DBC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2DE4CD2BC3DA2C002A8DBC /* AppDelegate.swift */; };
 		EA2DE4D02BC3DA2C002A8DBC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2DE4CF2BC3DA2C002A8DBC /* SceneDelegate.swift */; };
 		EA2DE4D22BC3DA2C002A8DBC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2DE4D12BC3DA2C002A8DBC /* ViewController.swift */; };
-		EA2DE4D52BC3DA2C002A8DBC /* Base in Resources */ = {isa = PBXBuildFile; fileRef = EA2DE4D42BC3DA2C002A8DBC /* Base */; };
 		EA2DE4D72BC3DA30002A8DBC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA2DE4D62BC3DA30002A8DBC /* Assets.xcassets */; };
 		EA2DE4DA2BC3DA30002A8DBC /* Base in Resources */ = {isa = PBXBuildFile; fileRef = EA2DE4D92BC3DA30002A8DBC /* Base */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		49F0786E04F2D820498C83D1 /* Pods-NASA Client.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NASA Client.release.xcconfig"; path = "Target Support Files/Pods-NASA Client/Pods-NASA Client.release.xcconfig"; sourceTree = "<group>"; };
+		B06E05F58C93054BA129723D /* Pods_NASA_Client.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NASA_Client.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA2DE4CA2BC3DA2C002A8DBC /* NASA Client.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "NASA Client.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA2DE4CD2BC3DA2C002A8DBC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EA2DE4CF2BC3DA2C002A8DBC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		EA2DE4D12BC3DA2C002A8DBC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		EA2DE4D42BC3DA2C002A8DBC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		EA2DE4D62BC3DA30002A8DBC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EA2DE4D92BC3DA30002A8DBC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EA2DE4DB2BC3DA30002A8DBC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FE62C2F68B70A5758BD31290 /* Pods-NASA Client.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NASA Client.debug.xcconfig"; path = "Target Support Files/Pods-NASA Client/Pods-NASA Client.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +33,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				19EB938467EB9E0AFC9BB086 /* Pods_NASA_Client.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -42,6 +45,8 @@
 			children = (
 				EA2DE4CC2BC3DA2C002A8DBC /* NASA Client */,
 				EA2DE4CB2BC3DA2C002A8DBC /* Products */,
+				EFBBCFCAF22795FE2530FBF0 /* Pods */,
+				F4881E8804A65AFCAE16E823 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -59,12 +64,28 @@
 				EA2DE4CD2BC3DA2C002A8DBC /* AppDelegate.swift */,
 				EA2DE4CF2BC3DA2C002A8DBC /* SceneDelegate.swift */,
 				EA2DE4D12BC3DA2C002A8DBC /* ViewController.swift */,
-				EA2DE4D32BC3DA2C002A8DBC /* Main.storyboard */,
 				EA2DE4D62BC3DA30002A8DBC /* Assets.xcassets */,
 				EA2DE4D82BC3DA30002A8DBC /* LaunchScreen.storyboard */,
 				EA2DE4DB2BC3DA30002A8DBC /* Info.plist */,
 			);
 			path = "NASA Client";
+			sourceTree = "<group>";
+		};
+		EFBBCFCAF22795FE2530FBF0 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				FE62C2F68B70A5758BD31290 /* Pods-NASA Client.debug.xcconfig */,
+				49F0786E04F2D820498C83D1 /* Pods-NASA Client.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		F4881E8804A65AFCAE16E823 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B06E05F58C93054BA129723D /* Pods_NASA_Client.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -74,9 +95,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EA2DE4DE2BC3DA30002A8DBC /* Build configuration list for PBXNativeTarget "NASA Client" */;
 			buildPhases = (
+				A524F763DAEC6B8A2167C0F6 /* [CP] Check Pods Manifest.lock */,
 				EA2DE4C62BC3DA2C002A8DBC /* Sources */,
 				EA2DE4C72BC3DA2C002A8DBC /* Frameworks */,
 				EA2DE4C82BC3DA2C002A8DBC /* Resources */,
+				7BF727E29D35D1F54DE07C94 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -127,11 +150,52 @@
 			files = (
 				EA2DE4D72BC3DA30002A8DBC /* Assets.xcassets in Resources */,
 				EA2DE4DA2BC3DA30002A8DBC /* Base in Resources */,
-				EA2DE4D52BC3DA2C002A8DBC /* Base in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		7BF727E29D35D1F54DE07C94 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-NASA Client/Pods-NASA Client-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-NASA Client/Pods-NASA Client-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-NASA Client/Pods-NASA Client-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A524F763DAEC6B8A2167C0F6 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-NASA Client-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		EA2DE4C62BC3DA2C002A8DBC /* Sources */ = {
@@ -147,14 +211,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		EA2DE4D32BC3DA2C002A8DBC /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				EA2DE4D42BC3DA2C002A8DBC /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		EA2DE4D82BC3DA30002A8DBC /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -287,17 +343,18 @@
 		};
 		EA2DE4DF2BC3DA30002A8DBC /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FE62C2F68B70A5758BD31290 /* Pods-NASA Client.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 3QBZ3X93DR;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "NASA Client/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -315,17 +372,18 @@
 		};
 		EA2DE4E02BC3DA30002A8DBC /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 49F0786E04F2D820498C83D1 /* Pods-NASA Client.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 3QBZ3X93DR;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "NASA Client/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
