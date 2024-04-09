@@ -58,7 +58,6 @@ class MarsView: UIView {
         
         scrollView.addSubview(containerView)
         containerView.snp.makeConstraints {
-//            $0.top.equalTo(scrollView.snp.top)
             $0.top.equalTo(scrollView.snp.top).offset(-60)
             $0.leading.trailing.bottom.equalToSuperview()
             $0.width.equalTo(scrollView)

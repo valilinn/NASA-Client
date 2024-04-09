@@ -40,11 +40,10 @@ class MarsViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         archiveButton.frame = CGRect(x: view.frame.size.width - 100,
-                                      y: view.frame.size.height - 100,
-                                      width: 70,
-                                      height: 70)
+                                     y: view.frame.size.height - 100,
+                                     width: 70,
+                                     height: 70)
     }
-    
     
     private func setupOverlay() {
         overlayView.backgroundColor = UIColor.black.withAlphaComponent(0.5)
@@ -57,10 +56,9 @@ class MarsViewController: UIViewController {
     private func setupButtons() {
         archiveButton.addTarget(self, action: #selector(archiveButtonTapped), for: .touchUpInside)
         marsView.calendarButton.addTarget(self, action: #selector(openDatePicker), for: .touchUpInside)
+        marsView.roverFilterButton.addTarget(self, action: #selector(openRoverPicker), for: .touchUpInside)
         marsView.cameraFilterButton.addTarget(self, action: #selector(openCameraPicker), for: .touchUpInside)
         marsView.plusButton.addTarget(self, action: #selector(saveFilterButton), for: .touchUpInside)
-        
-        
     }
     
     @objc
@@ -86,9 +84,8 @@ class MarsViewController: UIViewController {
     }
     
     @objc
-    func openCameraPicker() {
-        print("something")
-        let popupVC = CameraPopupViewController()
+    func openPicker(data: [String], nameOfTheView: String) {
+        let popupVC = CameraPopupViewController(data: data, nameOfTheView: nameOfTheView)
         popupVC.modalPresentationStyle = .overCurrentContext
         popupVC.modalTransitionStyle = .crossDissolve
         
@@ -101,6 +98,16 @@ class MarsViewController: UIViewController {
             }
         }
         present(popupVC, animated: true, completion: nil)
+    }
+    
+    @objc
+    func openCameraPicker() {
+        openPicker(data: ["All", "Элемент 1", "Элемент 2", "Элемент 3"], nameOfTheView: "Camera")
+    }
+    
+    @objc
+    func openRoverPicker() {
+        openPicker(data: ["All", "Rover 1", "Rover 2", "Rover 3"], nameOfTheView: "Rover")
     }
     
     @objc
