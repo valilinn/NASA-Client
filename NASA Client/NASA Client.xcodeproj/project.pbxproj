@@ -13,6 +13,7 @@
 		EA2DE4D22BC3DA2C002A8DBC /* PreloaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2DE4D12BC3DA2C002A8DBC /* PreloaderViewController.swift */; };
 		EA2DE4D72BC3DA30002A8DBC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA2DE4D62BC3DA30002A8DBC /* Assets.xcassets */; };
 		EA2DE4DA2BC3DA30002A8DBC /* Base in Resources */ = {isa = PBXBuildFile; fileRef = EA2DE4D92BC3DA30002A8DBC /* Base */; };
+		EACCE5F32BC50BFE00FCCDBB /* NSAttributedString_Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EACCE5F22BC50BFE00FCCDBB /* NSAttributedString_Extension.swift */; };
 		EAE930AB2BC3ED54006A2ABC /* PreloaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE930AA2BC3ED54006A2ABC /* PreloaderView.swift */; };
 		EAE930AE2BC3EFCA006A2ABC /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = EAE930AD2BC3EFCA006A2ABC /* Lottie */; };
 		EAE930B22BC3FA98006A2ABC /* SF-Pro.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EAE930B02BC3FA98006A2ABC /* SF-Pro.ttf */; };
@@ -24,6 +25,8 @@
 		EAE930C02BC4136E006A2ABC /* UIViewController_Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE930BF2BC4136E006A2ABC /* UIViewController_Extension.swift */; };
 		EAE930C22BC42FF5006A2ABC /* Button_Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE930C12BC42FF5006A2ABC /* Button_Extension.swift */; };
 		EAE930C42BC43F37006A2ABC /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE930C32BC43F37006A2ABC /* HistoryViewController.swift */; };
+		EAE930C62BC48C92006A2ABC /* MarsTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE930C52BC48C92006A2ABC /* MarsTableView.swift */; };
+		EAE930C92BC48D32006A2ABC /* InfoViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE930C82BC48D32006A2ABC /* InfoViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +39,7 @@
 		EA2DE4D62BC3DA30002A8DBC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EA2DE4D92BC3DA30002A8DBC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EA2DE4DB2BC3DA30002A8DBC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EACCE5F22BC50BFE00FCCDBB /* NSAttributedString_Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSAttributedString_Extension.swift; sourceTree = "<group>"; };
 		EAE930AA2BC3ED54006A2ABC /* PreloaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreloaderView.swift; sourceTree = "<group>"; };
 		EAE930B02BC3FA98006A2ABC /* SF-Pro.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro.ttf"; sourceTree = "<group>"; };
 		EAE930B12BC3FA98006A2ABC /* SF-Pro-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Italic.ttf"; sourceTree = "<group>"; };
@@ -46,6 +50,8 @@
 		EAE930BF2BC4136E006A2ABC /* UIViewController_Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController_Extension.swift; sourceTree = "<group>"; };
 		EAE930C12BC42FF5006A2ABC /* Button_Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button_Extension.swift; sourceTree = "<group>"; };
 		EAE930C32BC43F37006A2ABC /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
+		EAE930C52BC48C92006A2ABC /* MarsTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarsTableView.swift; sourceTree = "<group>"; };
+		EAE930C82BC48D32006A2ABC /* InfoViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewCell.swift; sourceTree = "<group>"; };
 		FE62C2F68B70A5758BD31290 /* Pods-NASA Client.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NASA Client.debug.xcconfig"; path = "Target Support Files/Pods-NASA Client/Pods-NASA Client.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -109,9 +115,10 @@
 		EAE930B82BC40149006A2ABC /* ViewExtensions */ = {
 			isa = PBXGroup;
 			children = (
+				EACCE5F22BC50BFE00FCCDBB /* NSAttributedString_Extension.swift */,
 				EAE930B62BC40141006A2ABC /* UILabel_Extension.swift */,
-				EAE930BF2BC4136E006A2ABC /* UIViewController_Extension.swift */,
 				EAE930C12BC42FF5006A2ABC /* Button_Extension.swift */,
+				EAE930BF2BC4136E006A2ABC /* UIViewController_Extension.swift */,
 			);
 			path = ViewExtensions;
 			sourceTree = "<group>";
@@ -131,8 +138,18 @@
 			children = (
 				EAE930AA2BC3ED54006A2ABC /* PreloaderView.swift */,
 				EAE930BD2BC40FCF006A2ABC /* MarsView.swift */,
+				EAE930C52BC48C92006A2ABC /* MarsTableView.swift */,
+				EAE930C72BC48D04006A2ABC /* Cells */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		EAE930C72BC48D04006A2ABC /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				EAE930C82BC48D32006A2ABC /* InfoViewCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		EFBBCFCAF22795FE2530FBF0 /* Pods */ = {
@@ -275,6 +292,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EAE930C92BC48D32006A2ABC /* InfoViewCell.swift in Sources */,
 				EA2DE4D22BC3DA2C002A8DBC /* PreloaderViewController.swift in Sources */,
 				EA2DE4CE2BC3DA2C002A8DBC /* AppDelegate.swift in Sources */,
 				EA2DE4D02BC3DA2C002A8DBC /* SceneDelegate.swift in Sources */,
@@ -282,7 +300,9 @@
 				EAE930BE2BC40FCF006A2ABC /* MarsView.swift in Sources */,
 				EAE930C22BC42FF5006A2ABC /* Button_Extension.swift in Sources */,
 				EAE930B52BC3FD50006A2ABC /* MarsViewController.swift in Sources */,
+				EACCE5F32BC50BFE00FCCDBB /* NSAttributedString_Extension.swift in Sources */,
 				EAE930B72BC40141006A2ABC /* UILabel_Extension.swift in Sources */,
+				EAE930C62BC48C92006A2ABC /* MarsTableView.swift in Sources */,
 				EAE930AB2BC3ED54006A2ABC /* PreloaderView.swift in Sources */,
 				EAE930C02BC4136E006A2ABC /* UIViewController_Extension.swift in Sources */,
 			);

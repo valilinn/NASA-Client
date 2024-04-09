@@ -6,23 +6,30 @@
 //
 
 import UIKit
+import SnapKit
 
 class MarsView: UIView {
     
     private let scrollView = UIScrollView()
     private let containerView = UIView()
     private let navigationView = UIView()
-    private let tableView = UITableView()
+    
     private let title = UILabel(text: "MARS.CAMERA", fontType: .largeTitle)
     private let dateLabel = UILabel(text: "June 6, 2019", fontType: .title2)
+    
     private let calendarButton = UIButton()
     private let roverFilterButton = UIButton(title: "All", image: .roverAll)
     private let cameraFilterButton = UIButton(title: "All", image: .cameraAll)
     private let plusButton = UIButton(image: .plus)
+    
+    var tableViewHeightConstraint: Constraint?
+    
+    let tableView = MarsTableView()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = .backgroundOne
+        tableView.backgroundColor = .green
         setViews()
         setConstraints()
     }
@@ -33,9 +40,9 @@ class MarsView: UIView {
     
     private func setViews() {
         calendarButton.setImage(.calendar, for: .normal)
-        calendarButton.layer.cornerRadius = 12
-        scrollView.backgroundColor = .blue
-        containerView.backgroundColor = .orange
+        calendarButton.layer.cornerRadius = 10
+//        scrollView.backgroundColor = .blue
+//        containerView.backgroundColor = .gray
         navigationView.backgroundColor = .accentOne
     }
     
@@ -47,23 +54,23 @@ class MarsView: UIView {
         
         scrollView.addSubview(containerView)
         containerView.snp.makeConstraints {
-            $0.top.equalTo(scrollView.snp.top)
+//            $0.top.equalTo(scrollView.snp.top)
+            $0.top.equalTo(scrollView.snp.top).offset(-60)
             $0.leading.trailing.bottom.equalToSuperview()
             $0.width.equalTo(scrollView)
         }
         
         containerView.addSubview(navigationView)
         navigationView.snp.makeConstraints {
-//            $0.top.equalTo(scrollView.snp.top)
             $0.top.equalTo(containerView.snp.top)
             $0.leading.equalTo(containerView.snp.leading)
             $0.trailing.equalTo(containerView.snp.trailing)
-            $0.height.equalTo(160)
+            $0.height.equalTo(220)
         }
         
         navigationView.addSubview(title)
         title.snp.makeConstraints {
-            $0.top.equalTo(navigationView.snp.top).offset(8)
+            $0.top.equalTo(navigationView.snp.top).offset(68)
             $0.leading.equalTo(navigationView.snp.leading).offset(16)
             $0.trailing.equalTo(navigationView.snp.trailing).offset(-16)
         }
@@ -98,35 +105,22 @@ class MarsView: UIView {
             $0.centerY.equalTo(stackButtons.snp.centerY)
             $0.trailing.equalTo(navigationView.snp.trailing).offset(-16)
         }
-//-------/
-//
-//        let stackTitleWithButtons = UIStackView(arrangedSubviews: [title, dateLabel, stackButtons])
-//        stackTitleWithButtons.axis = .vertical
-//        stackTitleWithButtons.alignment = .center
-//        stackButtons.spacing = 15
-//        
-//        containerView.addSubview(stackButtons)
-//        containerView.addSubview(stackTitleWithButtons)
-//        
-//        stackTitleWithButtons.snp.makeConstraints {
-//            $0.top.equalToSuperview()
-//            $0.leading.equalTo(containerView.snp.leading)
-//            //change to calendar, not container
-//            $0.trailing.equalTo(containerView.snp.trailing)
-//        }
-//        
-//        stackButtons.snp.makeConstraints {
-//            $0.top.equalTo(<#T##other: any ConstraintRelatableTarget##any ConstraintRelatableTarget#>)
-//            $0.leading.equalTo(containerView.snp.leading)
-//            //change to calendar, not container
-//            $0.trailing.equalTo(containerView.snp.trailing)
-//        }
+        
+        containerView.addSubview(tableView)
+        tableView.snp.makeConstraints {
+            $0.top.equalTo(navigationView.snp.bottom).offset(18)
+            $0.leading.equalTo(containerView.snp.leading)
+            $0.trailing.equalTo(containerView.snp.trailing)
+            $0.bottom.equalTo(containerView.snp.bottom).offset(-16)
+            tableViewHeightConstraint = $0.height.equalTo(1).constraint
+        }
+        
         
     }
     
 
 }
 
-#Preview {
-    MarsViewController()
-}
+//#Preview {
+//    MarsViewController()
+//}

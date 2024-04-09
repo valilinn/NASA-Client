@@ -5,9 +5,8 @@
 //  Created by Валентина Лінчук on 08/04/2024.
 //
 
-import Foundation
-
 import UIKit
+
 
 extension UIButton {
     
@@ -21,12 +20,18 @@ extension UIButton {
         titleLabel?.font = UIFont(name: "SFPro-Bold", size: 17)
         titleLabel?.textAlignment = .left
         tintColor = .black
-      
-//        contentEdgeInsets = UIEdgeInsets(top: 6, left: 4, bottom: 6, right: 4)
-//        imageEdgeInsets = UIEdgeInsets(top: 0, left: -8, bottom: 0, right: 0)
-       
         heightAnchor.constraint(equalToConstant: 38).isActive = true
         widthAnchor.constraint(equalToConstant: title.isEmpty ? 38 : 140).isActive = true
     }
+    
+    static func floatingButton() -> UIButton {
+        let button = UIButton(frame: CGRect(x: 0, y: 0, width: 70, height: 70))
+        button.layer.masksToBounds = true
+        button.layer.cornerRadius = 35
+        button.backgroundColor = .accentOne
+        button.setImage(.archive, for: .normal)
+        return button
+    }
+
     
 }
