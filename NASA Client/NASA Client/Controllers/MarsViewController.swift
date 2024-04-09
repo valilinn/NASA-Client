@@ -18,6 +18,8 @@ class MarsViewController: UIViewController {
     
     //test count row
     var data: CGFloat = 5
+    var roversData: MarsRover?
+    var roverPhotosData: MarsRoverPhotos?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +33,7 @@ class MarsViewController: UIViewController {
         marsView.tableView.tableView.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 10, right: 0)
         setupButtons()
         setupOverlay()
+        testNetwork()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -43,6 +46,34 @@ class MarsViewController: UIViewController {
                                      y: view.frame.size.height - 100,
                                      width: 70,
                                      height: 70)
+    }
+    
+    func testNetwork() {
+        print("Working")
+        NetworkService.shared.getMarsRovers { result in
+            switch result {
+            case .success(let roversData):
+                DispatchQueue.main.async {
+                    self.roversData = roversData
+                    print(self.roversData?.rovers.map {$0.name})
+                }
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+        
+        NetworkService.shared.getMarsRoverPhotos(date: "2015-6-3") { result in
+            switch result {
+            case .success(let roverPhotosData):
+                DispatchQueue.main.async {
+                    self.roverPhotosData = roverPhotosData
+                    print(self.roverPhotosData?.photos.map {$0.imgSrc})
+                }
+            case .failure(let error):
+                print(error)
+                print(error.localizedDescription)
+            }
+        }
     }
     
     private func setupOverlay() {
