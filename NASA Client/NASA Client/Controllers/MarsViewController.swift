@@ -18,8 +18,22 @@ class MarsViewController: UIViewController {
     
     //test count row
     var data: CGFloat = 5
-    var roversData: MarsRover?
-    var roverPhotosData: MarsRoverPhotos?
+    
+    //to get all rovers
+    var roversData: MarsRover? {
+        didSet {
+            if let rover = roversData {
+                fetchMarsRoverPhotos(rovers: rover)
+            }
+        }
+    }
+//an array of all data
+    var roverPhotosDataArray = [MarsRoverPhotos.Photo]() {
+        didSet {
+            marsView.tableView.tableView.reloadData()
+        }
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,7 +47,9 @@ class MarsViewController: UIViewController {
         marsView.tableView.tableView.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 10, right: 0)
         setupButtons()
         setupOverlay()
-        testNetwork()
+        fetchRoverNames()
+        
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -48,8 +64,7 @@ class MarsViewController: UIViewController {
                                      height: 70)
     }
     
-    func testNetwork() {
-        print("Working")
+    func fetchRoverNames() {
         NetworkService.shared.getMarsRovers { result in
             switch result {
             case .success(let roversData):
@@ -61,20 +76,22 @@ class MarsViewController: UIViewController {
                 print(error.localizedDescription)
             }
         }
-        
-        NetworkService.shared.getMarsRoverPhotos(date: "2015-6-3") { result in
+    }
+    
+    func fetchMarsRoverPhotos(rovers: MarsRover) {
+        NetworkService.shared.getMarsRoverPhotos(date: "2015-12-3", roversAll: rovers) { result in
             switch result {
             case .success(let roverPhotosData):
                 DispatchQueue.main.async {
-                    self.roverPhotosData = roverPhotosData
-                    print(self.roverPhotosData?.photos.map {$0.imgSrc})
+                    self.roverPhotosDataArray.append(contentsOf: roverPhotosData.photos)
+//                    print(self.roverPhotosDataArray)
                 }
             case .failure(let error):
-                print(error)
                 print(error.localizedDescription)
             }
         }
     }
+    
     
     private func setupOverlay() {
         overlayView.backgroundColor = UIColor.black.withAlphaComponent(0.5)
@@ -94,8 +111,7 @@ class MarsViewController: UIViewController {
     
     @objc
     func archiveButtonTapped() {
-//        navigationController?.pushViewController(HistoryViewController(), animated: true)
-        navigationController?.pushViewController(ImagesViewController(), animated: true)
+        navigationController?.pushViewController(HistoryViewController(), animated: true)
     }
     
     @objc
@@ -144,7 +160,7 @@ class MarsViewController: UIViewController {
     
     @objc
     func saveFilterButton() {
-        print("fkrdhgkjht")
+        
     }
     
 }
@@ -156,15 +172,25 @@ extension MarsViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        5
+        roverPhotosDataArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: InfoViewCell.reuseID, for: indexPath) as! InfoViewCell
-        cell.configure(rover: "CCCCCC CCCC cccc", camera: "JJJ jjj jjjjj jjjjjjjj jjjj jjjjjj", date: "kvd sskjhhgf ")
+        
+        cell.configure(rover: roverPhotosDataArray[indexPath.row].rover.name, camera: roverPhotosDataArray[indexPath.row].camera.fullName, date: roverPhotosDataArray[indexPath.row].earthDate, imageUrl: roverPhotosDataArray[indexPath.row].imgSrc)
+        
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        let vc = DetailImageViewController()
+        vc.imageString = roverPhotosDataArray[indexPath.row].imgSrc
+        navigationController?.pushViewController(vc, animated: true)
+        
+    }
     
 }
 //#Preview {

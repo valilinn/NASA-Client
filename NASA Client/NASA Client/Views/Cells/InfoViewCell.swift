@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import Kingfisher
 
 class InfoViewCell: UITableViewCell {
     
@@ -25,7 +26,7 @@ class InfoViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         //to delete
-        configure(rover: "Test", camera: "Test Test Test Test Test Test Test Test Test Test", date: "Test Test Test ")
+//        configure(rover: "Test", camera: "Test Test Test Test Test Test Test Test Test Test", date: "Test Test Test ", imageUrl: <#String#>)
         setViews()
         setConstraints()
         //to delete
@@ -36,10 +37,15 @@ class InfoViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure(rover: String, camera: String, date: String) {
+    func configure(rover: String, camera: String, date: String, imageUrl: String) {
         roverLabel.attributedText = NSMutableAttributedString.formattedString(prefix: "Rover:", value: rover, textColor: UIColor.layerOne, prefixLength: 6)
         cameraLabel.attributedText = NSMutableAttributedString.formattedString(prefix: "Camera:", value: camera, textColor: UIColor.layerOne, prefixLength: 7)
         dateLabel.attributedText = NSMutableAttributedString.formattedString(prefix: "Date:", value: date, textColor: UIColor.layerOne, prefixLength: 5)
+        
+        let droppedUrl = String(imageUrl.dropFirst(4))
+        let url = URL(string:"https\(droppedUrl)")
+        marsImageView.kf.setImage(with: url)
+        
     }
   
     private func setViews() {

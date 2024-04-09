@@ -29,6 +29,7 @@ class MarsTableView: UIView {
 //        tableView.backgroundColor = .cyan
         tableView.isScrollEnabled = false
         tableView.separatorStyle = .none
+       
         
         tableView.snp.makeConstraints {
             $0.edges.equalTo(safeAreaLayoutGuide.snp.edges)

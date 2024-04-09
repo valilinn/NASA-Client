@@ -23,12 +23,11 @@ final class NetworkService {
     
     private enum EndPoint: String {
         case allRovers = "/mars-photos/api/v1/rovers/"
-        case currentRoverData = "curiosity/photos"
+//        case currentRoverData = "curiosity/photos"
+        case currentRoverData = "/photos"
     }
     
     func getMarsRovers(completion: @escaping (Result<MarsRover, Error>) -> ()) {
-//        var urlStr = Gateway.https.rawValue + server + EndPoint.currentRoverData.rawValue
-//        urlStr += "?earth_date=\(date)&api_key=\(apiKey)"
         var urlStr = Gateway.https.rawValue + server + EndPoint.allRovers.rawValue
         urlStr += "?api_key=\(apiKey)"
         
@@ -52,27 +51,29 @@ final class NetworkService {
         task.resume()
     }
     
-    func getMarsRoverPhotos(date: String, completion: @escaping (Result<MarsRoverPhotos, Error>) -> ()) {
-        var urlStr = Gateway.https.rawValue + server + EndPoint.allRovers.rawValue + EndPoint.currentRoverData.rawValue
-        urlStr += "?earth_date=\(date)&api_key=\(apiKey)"
-        
-        guard let url = URL(string: urlStr) else { return }
-        let task = session.dataTask(with: url) { data, response, error in
-            guard let data else {
-                if let error {
+    func getMarsRoverPhotos(date: String, roversAll: MarsRover, completion: @escaping (Result<MarsRoverPhotos, Error>) -> ()) {
+        for rover in roversAll.rovers {
+            var urlStr = Gateway.https.rawValue + server + EndPoint.allRovers.rawValue + rover.name.lowercased() + EndPoint.currentRoverData.rawValue
+            urlStr += "?earth_date=\(date)&api_key=\(apiKey)"
+            
+            guard let url = URL(string: urlStr) else { return }
+            let task = session.dataTask(with: url) { data, response, error in
+                guard let data else {
+                    if let error {
+                        completion(.failure(error))
+                    }
+                    return
+                }
+                let decoder = JSONDecoder()
+                decoder.keyDecodingStrategy = .convertFromSnakeCase
+                do {
+                    let marsRoverPhotosData = try decoder.decode(MarsRoverPhotos.self, from: data)
+                    completion(.success(marsRoverPhotosData))
+                } catch {
                     completion(.failure(error))
                 }
-                return
             }
-            let decoder = JSONDecoder()
-            decoder.keyDecodingStrategy = .convertFromSnakeCase
-            do {
-                let marsRoverPhotosData = try decoder.decode(MarsRoverPhotos.self, from: data)
-                completion(.success(marsRoverPhotosData))
-            } catch {
-                completion(.failure(error))
-            }
+            task.resume()
         }
-        task.resume()
     }
 }

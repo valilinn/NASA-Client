@@ -10,10 +10,14 @@
 		19EB938467EB9E0AFC9BB086 /* Pods_NASA_Client.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B06E05F58C93054BA129723D /* Pods_NASA_Client.framework */; };
 		EA1595712BC5396700ACB6A8 /* DatePopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA1595702BC5396700ACB6A8 /* DatePopupViewController.swift */; };
 		EA1595732BC54F8900ACB6A8 /* CameraPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA1595722BC54F8900ACB6A8 /* CameraPopupViewController.swift */; };
-		EA1595772BC5753400ACB6A8 /* ImagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA1595762BC5753400ACB6A8 /* ImagesViewController.swift */; };
 		EA15957A2BC58AF900ACB6A8 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA1595792BC58AF900ACB6A8 /* NetworkService.swift */; };
 		EA15957D2BC58C1E00ACB6A8 /* MarsRoverPhotos.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA15957C2BC58C1D00ACB6A8 /* MarsRoverPhotos.swift */; };
 		EA15957F2BC5986E00ACB6A8 /* MarsRover.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA15957E2BC5986E00ACB6A8 /* MarsRover.swift */; };
+		EA1595812BC5B6CE00ACB6A8 /* Filters.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA1595802BC5B6CE00ACB6A8 /* Filters.swift */; };
+		EA1595832BC5B75600ACB6A8 /* CurrentDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA1595822BC5B75600ACB6A8 /* CurrentDate.swift */; };
+		EA1595862BC5C41F00ACB6A8 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = EA1595852BC5C41F00ACB6A8 /* Kingfisher */; };
+		EA1595882BC5D4BD00ACB6A8 /* DetailImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA1595872BC5D4BD00ACB6A8 /* DetailImageViewController.swift */; };
+		EA15958A2BC5D4DD00ACB6A8 /* DetailImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA1595892BC5D4DD00ACB6A8 /* DetailImageView.swift */; };
 		EA2DE4CE2BC3DA2C002A8DBC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2DE4CD2BC3DA2C002A8DBC /* AppDelegate.swift */; };
 		EA2DE4D02BC3DA2C002A8DBC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2DE4CF2BC3DA2C002A8DBC /* SceneDelegate.swift */; };
 		EA2DE4D22BC3DA2C002A8DBC /* PreloaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2DE4D12BC3DA2C002A8DBC /* PreloaderViewController.swift */; };
@@ -39,10 +43,13 @@
 		B06E05F58C93054BA129723D /* Pods_NASA_Client.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NASA_Client.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA1595702BC5396700ACB6A8 /* DatePopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePopupViewController.swift; sourceTree = "<group>"; };
 		EA1595722BC54F8900ACB6A8 /* CameraPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPopupViewController.swift; sourceTree = "<group>"; };
-		EA1595762BC5753400ACB6A8 /* ImagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesViewController.swift; sourceTree = "<group>"; };
 		EA1595792BC58AF900ACB6A8 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		EA15957C2BC58C1D00ACB6A8 /* MarsRoverPhotos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarsRoverPhotos.swift; sourceTree = "<group>"; };
 		EA15957E2BC5986E00ACB6A8 /* MarsRover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarsRover.swift; sourceTree = "<group>"; };
+		EA1595802BC5B6CE00ACB6A8 /* Filters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filters.swift; sourceTree = "<group>"; };
+		EA1595822BC5B75600ACB6A8 /* CurrentDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentDate.swift; sourceTree = "<group>"; };
+		EA1595872BC5D4BD00ACB6A8 /* DetailImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailImageViewController.swift; sourceTree = "<group>"; };
+		EA1595892BC5D4DD00ACB6A8 /* DetailImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailImageView.swift; sourceTree = "<group>"; };
 		EA2DE4CA2BC3DA2C002A8DBC /* NASA Client.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "NASA Client.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA2DE4CD2BC3DA2C002A8DBC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EA2DE4CF2BC3DA2C002A8DBC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -70,6 +77,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA1595862BC5C41F00ACB6A8 /* Kingfisher in Frameworks */,
 				19EB938467EB9E0AFC9BB086 /* Pods_NASA_Client.framework in Frameworks */,
 				EAE930AE2BC3EFCA006A2ABC /* Lottie in Frameworks */,
 			);
@@ -91,6 +99,8 @@
 			children = (
 				EA15957E2BC5986E00ACB6A8 /* MarsRover.swift */,
 				EA15957C2BC58C1D00ACB6A8 /* MarsRoverPhotos.swift */,
+				EA1595802BC5B6CE00ACB6A8 /* Filters.swift */,
+				EA1595822BC5B75600ACB6A8 /* CurrentDate.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -159,7 +169,7 @@
 				EAE930C32BC43F37006A2ABC /* HistoryViewController.swift */,
 				EA1595702BC5396700ACB6A8 /* DatePopupViewController.swift */,
 				EA1595722BC54F8900ACB6A8 /* CameraPopupViewController.swift */,
-				EA1595762BC5753400ACB6A8 /* ImagesViewController.swift */,
+				EA1595872BC5D4BD00ACB6A8 /* DetailImageViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -170,6 +180,7 @@
 				EAE930AA2BC3ED54006A2ABC /* PreloaderView.swift */,
 				EAE930BD2BC40FCF006A2ABC /* MarsView.swift */,
 				EAE930C52BC48C92006A2ABC /* MarsTableView.swift */,
+				EA1595892BC5D4DD00ACB6A8 /* DetailImageView.swift */,
 				EAE930C72BC48D04006A2ABC /* Cells */,
 			);
 			path = Views;
@@ -220,6 +231,7 @@
 			name = "NASA Client";
 			packageProductDependencies = (
 				EAE930AD2BC3EFCA006A2ABC /* Lottie */,
+				EA1595852BC5C41F00ACB6A8 /* Kingfisher */,
 			);
 			productName = "NASA Client";
 			productReference = EA2DE4CA2BC3DA2C002A8DBC /* NASA Client.app */;
@@ -251,6 +263,7 @@
 			mainGroup = EA2DE4C12BC3DA2C002A8DBC;
 			packageReferences = (
 				EAE930AC2BC3EFCA006A2ABC /* XCRemoteSwiftPackageReference "lottie-ios" */,
+				EA1595842BC5C41F00ACB6A8 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = EA2DE4CB2BC3DA2C002A8DBC /* Products */;
 			projectDirPath = "";
@@ -323,18 +336,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EA1595772BC5753400ACB6A8 /* ImagesViewController.swift in Sources */,
 				EAE930C92BC48D32006A2ABC /* InfoViewCell.swift in Sources */,
 				EA2DE4D22BC3DA2C002A8DBC /* PreloaderViewController.swift in Sources */,
 				EA2DE4CE2BC3DA2C002A8DBC /* AppDelegate.swift in Sources */,
 				EA2DE4D02BC3DA2C002A8DBC /* SceneDelegate.swift in Sources */,
+				EA15958A2BC5D4DD00ACB6A8 /* DetailImageView.swift in Sources */,
 				EAE930C42BC43F37006A2ABC /* HistoryViewController.swift in Sources */,
 				EA1595712BC5396700ACB6A8 /* DatePopupViewController.swift in Sources */,
 				EA15957F2BC5986E00ACB6A8 /* MarsRover.swift in Sources */,
 				EAE930BE2BC40FCF006A2ABC /* MarsView.swift in Sources */,
+				EA1595812BC5B6CE00ACB6A8 /* Filters.swift in Sources */,
 				EA1595732BC54F8900ACB6A8 /* CameraPopupViewController.swift in Sources */,
 				EAE930C22BC42FF5006A2ABC /* Button_Extension.swift in Sources */,
+				EA1595882BC5D4BD00ACB6A8 /* DetailImageViewController.swift in Sources */,
 				EA15957A2BC58AF900ACB6A8 /* NetworkService.swift in Sources */,
+				EA1595832BC5B75600ACB6A8 /* CurrentDate.swift in Sources */,
 				EAE930B52BC3FD50006A2ABC /* MarsViewController.swift in Sources */,
 				EACCE5F32BC50BFE00FCCDBB /* NSAttributedString_Extension.swift in Sources */,
 				EA15957D2BC58C1E00ACB6A8 /* MarsRoverPhotos.swift in Sources */,
@@ -559,6 +575,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		EA1595842BC5C41F00ACB6A8 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.11.0;
+			};
+		};
 		EAE930AC2BC3EFCA006A2ABC /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/airbnb/lottie-ios.git";
@@ -570,6 +594,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		EA1595852BC5C41F00ACB6A8 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EA1595842BC5C41F00ACB6A8 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
 		EAE930AD2BC3EFCA006A2ABC /* Lottie */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = EAE930AC2BC3EFCA006A2ABC /* XCRemoteSwiftPackageReference "lottie-ios" */;
