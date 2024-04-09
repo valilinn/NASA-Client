@@ -14,6 +14,7 @@ class MarsViewController: UIViewController {
     private var archiveButton = UIButton.floatingButton()
     private let cellHeight: CGFloat = 162
     private let spacingBetweenCells: CGFloat = 15
+    private let overlayView = UIView()
     
     //test count row
     var data: CGFloat = 5
@@ -26,9 +27,14 @@ class MarsViewController: UIViewController {
         navigationController?.isNavigationBarHidden = true
         marsView.tableView.tableView.delegate = self
         marsView.tableView.tableView.dataSource = self
-        setupButtons()
         marsView.tableViewHeightConstraint?.update(offset: data * cellHeight)
         marsView.tableView.tableView.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 10, right: 0)
+        setupButtons()
+        setupOverlay()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
     }
     
     override func viewDidLayoutSubviews() {
@@ -39,13 +45,44 @@ class MarsViewController: UIViewController {
                                       height: 70)
     }
     
+    
+    private func setupOverlay() {
+        overlayView.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+        overlayView.frame = view.bounds
+        overlayView.alpha = 0
+        overlayView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        view.addSubview(overlayView)
+    }
+    
     private func setupButtons() {
         archiveButton.addTarget(self, action: #selector(archiveButtonTapped), for: .touchUpInside)
+        marsView.calendarButton.addTarget(self, action: #selector(openDatePicker), for: .touchUpInside)
     }
     
     @objc
     func archiveButtonTapped() {
         navigationController?.pushViewController(HistoryViewController(), animated: true)
+    }
+    
+    @objc
+    func openDatePicker() {
+        let popupVC = PopupViewController()
+        popupVC.modalPresentationStyle = .overCurrentContext
+        popupVC.modalTransitionStyle = .crossDissolve
+        
+        UIView.animate(withDuration: 0.3) {
+            self.overlayView.alpha = 1
+        }
+        // Если требуется изменить список данных перед отображением пикера, вы можете это сделать здесь
+        // Например, добавление элементов из вашей модели данных
+        
+        popupVC.onClose = {
+            UIView.animate(withDuration: 0.3) {
+                self.overlayView.alpha = 0
+            }
+        }
+        
+        present(popupVC, animated: true, completion: nil)
     }
     
 }

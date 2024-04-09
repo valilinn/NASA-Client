@@ -17,10 +17,10 @@ class MarsView: UIView {
     private let title = UILabel(text: "MARS.CAMERA", fontType: .largeTitle)
     private let dateLabel = UILabel(text: "June 6, 2019", fontType: .title2)
     
-    private let calendarButton = UIButton()
-    private let roverFilterButton = UIButton(title: "All", image: .roverAll)
-    private let cameraFilterButton = UIButton(title: "All", image: .cameraAll)
-    private let plusButton = UIButton(image: .plus)
+    let calendarButton = UIButton()
+    let roverFilterButton = UIButton(title: "All", image: .roverAll)
+    let cameraFilterButton = UIButton(title: "All", image: .cameraAll)
+    let plusButton = UIButton(image: .plus)
     
     var tableViewHeightConstraint: Constraint?
     
