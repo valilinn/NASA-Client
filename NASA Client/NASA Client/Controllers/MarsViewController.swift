@@ -15,12 +15,13 @@ class MarsViewController: UIViewController {
     private let cellHeight: CGFloat = 162
     private let spacingBetweenCells: CGFloat = 15
     private let overlayView = UIView()
+    private var filters = Filters()
     
-    //test count row
-    var data: CGFloat = 5
+//    //test count row
+    private var data: CGFloat = 5
     
     //to get all rovers
-    var roversData: MarsRover? {
+    private var roversData: MarsRover? {
         didSet {
             if let rover = roversData {
                 fetchMarsRoverPhotos(rovers: rover)
@@ -28,8 +29,14 @@ class MarsViewController: UIViewController {
         }
     }
 //an array of all data
-    var roverPhotosDataArray = [MarsRoverPhotos.Photo]() {
+    private var roverPhotosDataArray = [MarsRoverPhotos.Photo]() {
         didSet {
+            marsView.tableView.tableView.reloadData()
+        }
+    }
+    private var filteredMarsPhotos = [MarsRoverPhotos.Photo]() {
+        didSet {
+            marsView.tableViewHeightConstraint?.update(offset: CGFloat(filteredMarsPhotos.count) * cellHeight)
             marsView.tableView.tableView.reloadData()
         }
     }
@@ -43,7 +50,7 @@ class MarsViewController: UIViewController {
         navigationController?.isNavigationBarHidden = true
         marsView.tableView.tableView.delegate = self
         marsView.tableView.tableView.dataSource = self
-        marsView.tableViewHeightConstraint?.update(offset: data * cellHeight)
+//        marsView.tableViewHeightConstraint?.update(offset: data * cellHeight)
         marsView.tableView.tableView.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 10, right: 0)
         setupButtons()
         setupOverlay()
@@ -64,7 +71,7 @@ class MarsViewController: UIViewController {
                                      height: 70)
     }
     
-    func fetchRoverNames() {
+    private func fetchRoverNames() {
         NetworkService.shared.getMarsRovers { result in
             switch result {
             case .success(let roversData):
@@ -78,18 +85,24 @@ class MarsViewController: UIViewController {
         }
     }
     
-    func fetchMarsRoverPhotos(rovers: MarsRover) {
+    private func fetchMarsRoverPhotos(rovers: MarsRover) {
         NetworkService.shared.getMarsRoverPhotos(date: "2015-12-3", roversAll: rovers) { result in
             switch result {
             case .success(let roverPhotosData):
                 DispatchQueue.main.async {
                     self.roverPhotosDataArray.append(contentsOf: roverPhotosData.photos)
+                    self.toFilterMarsPhotos()
 //                    print(self.roverPhotosDataArray)
                 }
             case .failure(let error):
                 print(error.localizedDescription)
             }
         }
+    }
+    
+    private func toFilterMarsPhotos() {
+        filteredMarsPhotos = filters.filterMarsPhotos(dataToFilter: roverPhotosDataArray)
+        marsView.tableView.tableView.reloadData()
     }
     
     
@@ -172,13 +185,13 @@ extension MarsViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        roverPhotosDataArray.count
+        filteredMarsPhotos.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: InfoViewCell.reuseID, for: indexPath) as! InfoViewCell
         
-        cell.configure(rover: roverPhotosDataArray[indexPath.row].rover.name, camera: roverPhotosDataArray[indexPath.row].camera.fullName, date: roverPhotosDataArray[indexPath.row].earthDate, imageUrl: roverPhotosDataArray[indexPath.row].imgSrc)
+        cell.configure(rover: filteredMarsPhotos[indexPath.row].rover.name, camera: filteredMarsPhotos[indexPath.row].camera.fullName, date: filteredMarsPhotos[indexPath.row].earthDate, imageUrl: filteredMarsPhotos[indexPath.row].imgSrc)
         
         return cell
     }

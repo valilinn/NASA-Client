@@ -56,7 +56,9 @@ final class NetworkService {
             var urlStr = Gateway.https.rawValue + server + EndPoint.allRovers.rawValue + rover.name.lowercased() + EndPoint.currentRoverData.rawValue
             urlStr += "?earth_date=\(date)&api_key=\(apiKey)"
             
+            
             guard let url = URL(string: urlStr) else { return }
+            print(url)
             let task = session.dataTask(with: url) { data, response, error in
                 guard let data else {
                     if let error {
