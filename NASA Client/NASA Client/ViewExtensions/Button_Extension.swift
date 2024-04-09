@@ -23,8 +23,6 @@ extension UIButton {
         isUserInteractionEnabled = true
         self.isEnabled = true
         heightAnchor.constraint(equalToConstant: 38).isActive = true
-//        widthAnchor.constraint(equalToConstant: title.isEmpty ? 38 : 140).isActive = true
-//        widthAnchor.constraint(equalToConstant: 38).isActive = true
     }
     
     static func floatingButton() -> UIButton {

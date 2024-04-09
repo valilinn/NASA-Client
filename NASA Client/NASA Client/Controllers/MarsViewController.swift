@@ -63,7 +63,8 @@ class MarsViewController: UIViewController {
     
     @objc
     func archiveButtonTapped() {
-        navigationController?.pushViewController(HistoryViewController(), animated: true)
+//        navigationController?.pushViewController(HistoryViewController(), animated: true)
+        navigationController?.pushViewController(ImagesViewController(), animated: true)
     }
     
     @objc
