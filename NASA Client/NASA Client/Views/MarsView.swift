@@ -22,6 +22,7 @@ class MarsView: UIView {
     let cameraFilterButton = UIButton(title: "All", image: .cameraAll)
     let plusButton = UIButton(image: .plus)
     
+    
     var tableViewHeightConstraint: Constraint?
     
     let tableView = MarsTableView()
@@ -41,6 +42,9 @@ class MarsView: UIView {
     private func setViews() {
         calendarButton.setImage(.calendar, for: .normal)
         calendarButton.layer.cornerRadius = 10
+        roverFilterButton.isUserInteractionEnabled = true
+        cameraFilterButton.isUserInteractionEnabled = true
+        plusButton.isUserInteractionEnabled = true
 //        scrollView.backgroundColor = .blue
 //        containerView.backgroundColor = .gray
         navigationView.backgroundColor = .accentOne
@@ -86,6 +90,7 @@ class MarsView: UIView {
         stackButtons.alignment = .fill
         stackButtons.distribution = .fillEqually // или .equalSpacing, в зависимости от предпочтений. Чтобы два элемента в стеке имели одинаковую ширину
         stackButtons.spacing = 15
+        stackButtons.isUserInteractionEnabled = true
         
         navigationView.addSubview(stackButtons)
         stackButtons.snp.makeConstraints {
@@ -104,6 +109,7 @@ class MarsView: UIView {
         plusButton.snp.makeConstraints {
             $0.centerY.equalTo(stackButtons.snp.centerY)
             $0.trailing.equalTo(navigationView.snp.trailing).offset(-16)
+            $0.width.equalTo(38)
         }
         
         containerView.addSubview(tableView)

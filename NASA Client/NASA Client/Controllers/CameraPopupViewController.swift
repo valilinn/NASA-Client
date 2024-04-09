@@ -1,5 +1,5 @@
 //
-//  DatePopupViewController.swift
+//  CameraPopupViewController.swift
 //  NASA Client
 //
 //  Created by Валентина Лінчук on 09/04/2024.
@@ -8,16 +8,21 @@
 import UIKit
 import SnapKit
 
-class DatePopupViewController: UIViewController {
+class CameraPopupViewController: UIViewController {
     
     let contentView = UIView()
-    let datePicker = UIDatePicker()
+    let pickerView = UIPickerView()
     var onClose: (() -> Void)?
     private let doneButton = UIButton()
     private let closeButton = UIButton()
-    private let dateLabel = UILabel(text: "Date", fontType: .title2)
+    private let dateLabel = UILabel(text: "Camera", fontType: .title2)
+    
+    var data: [String] = ["All", "Элемент 1", "Элемент 2", "Элемент 3"]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        pickerView.dataSource = self
+        pickerView.delegate = self
         setupViews()
         setupButtons()
         setupConstraints()
@@ -26,10 +31,6 @@ class DatePopupViewController: UIViewController {
     private func setupViews() {
         contentView.backgroundColor = .backgroundOne
         contentView.layer.cornerRadius = 48
-        
-        datePicker.preferredDatePickerStyle = .wheels
-        datePicker.datePickerMode = .date
-        datePicker.locale = Locale(identifier: "en_US")
         
         doneButton.setImage(.done, for: .normal)
         doneButton.tintColor = .accentOne
@@ -51,14 +52,14 @@ class DatePopupViewController: UIViewController {
     private func setupConstraints() {
         view.addSubview(contentView)
         contentView.snp.makeConstraints {
-            $0.centerY.equalToSuperview()
-            $0.leading.equalToSuperview().offset(20)
-            $0.trailing.equalToSuperview().offset(-20)
-            $0.height.equalTo(312)
+            $0.leading.equalToSuperview()
+            $0.trailing.equalToSuperview()
+            $0.bottom.equalToSuperview().offset(26)
+            $0.height.equalTo(316)
         }
         
-        contentView.addSubview(datePicker)
-        datePicker.snp.makeConstraints {
+        contentView.addSubview(pickerView)
+        pickerView.snp.makeConstraints {
             $0.top.equalToSuperview().offset(43)
             $0.leading.trailing.bottom.equalToSuperview()
         }
@@ -83,6 +84,27 @@ class DatePopupViewController: UIViewController {
     }
 }
 
+extension CameraPopupViewController: UIPickerViewDataSource, UIPickerViewDelegate {
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return data.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return data[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        // добавить код для обработки выбранного элемента здесь
+    }
+    
+    
+}
+
 #Preview {
-    DatePopupViewController()
+    CameraPopupViewController()
 }

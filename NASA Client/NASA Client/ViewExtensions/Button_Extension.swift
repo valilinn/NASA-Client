@@ -20,8 +20,11 @@ extension UIButton {
         titleLabel?.font = UIFont(name: "SFPro-Bold", size: 17)
         titleLabel?.textAlignment = .left
         tintColor = .black
+        isUserInteractionEnabled = true
+        self.isEnabled = true
         heightAnchor.constraint(equalToConstant: 38).isActive = true
-        widthAnchor.constraint(equalToConstant: title.isEmpty ? 38 : 140).isActive = true
+//        widthAnchor.constraint(equalToConstant: title.isEmpty ? 38 : 140).isActive = true
+//        widthAnchor.constraint(equalToConstant: 38).isActive = true
     }
     
     static func floatingButton() -> UIButton {

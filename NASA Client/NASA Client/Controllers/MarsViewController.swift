@@ -57,6 +57,10 @@ class MarsViewController: UIViewController {
     private func setupButtons() {
         archiveButton.addTarget(self, action: #selector(archiveButtonTapped), for: .touchUpInside)
         marsView.calendarButton.addTarget(self, action: #selector(openDatePicker), for: .touchUpInside)
+        marsView.cameraFilterButton.addTarget(self, action: #selector(openCameraPicker), for: .touchUpInside)
+        marsView.plusButton.addTarget(self, action: #selector(saveFilterButton), for: .touchUpInside)
+        
+        
     }
     
     @objc
@@ -66,23 +70,42 @@ class MarsViewController: UIViewController {
     
     @objc
     func openDatePicker() {
-        let popupVC = PopupViewController()
+        let popupVC = DatePopupViewController()
         popupVC.modalPresentationStyle = .overCurrentContext
         popupVC.modalTransitionStyle = .crossDissolve
         
         UIView.animate(withDuration: 0.3) {
             self.overlayView.alpha = 1
         }
-        // Если требуется изменить список данных перед отображением пикера, вы можете это сделать здесь
-        // Например, добавление элементов из вашей модели данных
-        
         popupVC.onClose = {
             UIView.animate(withDuration: 0.3) {
                 self.overlayView.alpha = 0
             }
         }
-        
         present(popupVC, animated: true, completion: nil)
+    }
+    
+    @objc
+    func openCameraPicker() {
+        print("something")
+        let popupVC = CameraPopupViewController()
+        popupVC.modalPresentationStyle = .overCurrentContext
+        popupVC.modalTransitionStyle = .crossDissolve
+        
+        UIView.animate(withDuration: 0.3) {
+            self.overlayView.alpha = 1
+        }
+        popupVC.onClose = {
+            UIView.animate(withDuration: 0.3) {
+                self.overlayView.alpha = 0
+            }
+        }
+        present(popupVC, animated: true, completion: nil)
+    }
+    
+    @objc
+    func saveFilterButton() {
+        print("fkrdhgkjht")
     }
     
 }
