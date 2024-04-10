@@ -130,7 +130,11 @@ extension BottomPopupViewController: UIPickerViewDataSource, UIPickerViewDelegat
 //        delegate?.updateSelectedFilter(filterName: nameLabel.text ?? "", filterComponent: data[component])
 //            print("Выбранное значение: \(data[component])")
         print(row)
-        selectedFilter = data[row]
+        if row != nil {
+            selectedFilter = data[row]
+        } else {
+            selectedFilter = data[0]
+        }
     }
     
 }

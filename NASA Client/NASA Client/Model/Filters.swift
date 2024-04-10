@@ -31,7 +31,7 @@ class Filters: Object, ObjectKeyIdentifiable {
                print("NO FILTERS")
            }
            
-           print("FILTERED ARRAY\(filteredArray)")
+        print("FILTERED ARRAY----------------------------------------------------------------------------------------\(filteredArray.map {$0.earthDate})")
            return filteredArray
     }
 }

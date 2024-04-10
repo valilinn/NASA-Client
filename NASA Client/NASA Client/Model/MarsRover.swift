@@ -13,17 +13,17 @@ struct MarsRover: Codable {
     struct Rover: Codable {
         let id: Int
         let name, landingDate, launchDate, status: String
-        let maxSol: Int
-        let maxDate: String
-        let totalPhotos: Int
-        let cameras: [Camera]
+//        let maxSol: Int
+//        let maxDate: String
+//        let totalPhotos: Int
+//        let cameras: [Camera]
     }
     
-    struct Camera: Codable {
-        let name, fullName: String
-        
-        
-    }
+//    struct Camera: Codable {
+//        let name, fullName: String
+//        
+//        
+//    }
 }
 
 

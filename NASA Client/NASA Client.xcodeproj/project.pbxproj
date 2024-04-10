@@ -32,6 +32,7 @@
 		EADD1B102BC6BBC600BE6019 /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EADD1B0F2BC6BBC600BE6019 /* HistoryView.swift */; };
 		EADD1B122BC6BD2D00BE6019 /* HistoryViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EADD1B112BC6BD2D00BE6019 /* HistoryViewCell.swift */; };
 		EADD1B152BC6D82600BE6019 /* AlertHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = EADD1B142BC6D82600BE6019 /* AlertHelper.swift */; };
+		EADD1B172BC6FE1700BE6019 /* RealmSavedFiltersDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EADD1B162BC6FE1700BE6019 /* RealmSavedFiltersDelegate.swift */; };
 		EAE930AB2BC3ED54006A2ABC /* PreloaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE930AA2BC3ED54006A2ABC /* PreloaderView.swift */; };
 		EAE930AE2BC3EFCA006A2ABC /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = EAE930AD2BC3EFCA006A2ABC /* Lottie */; };
 		EAE930B22BC3FA98006A2ABC /* SF-Pro.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EAE930B02BC3FA98006A2ABC /* SF-Pro.ttf */; };
@@ -71,6 +72,7 @@
 		EADD1B0F2BC6BBC600BE6019 /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
 		EADD1B112BC6BD2D00BE6019 /* HistoryViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewCell.swift; sourceTree = "<group>"; };
 		EADD1B142BC6D82600BE6019 /* AlertHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertHelper.swift; sourceTree = "<group>"; };
+		EADD1B162BC6FE1700BE6019 /* RealmSavedFiltersDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmSavedFiltersDelegate.swift; sourceTree = "<group>"; };
 		EAE930AA2BC3ED54006A2ABC /* PreloaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreloaderView.swift; sourceTree = "<group>"; };
 		EAE930B02BC3FA98006A2ABC /* SF-Pro.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro.ttf"; sourceTree = "<group>"; };
 		EAE930B12BC3FA98006A2ABC /* SF-Pro-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Italic.ttf"; sourceTree = "<group>"; };
@@ -162,6 +164,7 @@
 			children = (
 				EA15958B2BC5F84000ACB6A8 /* SetupFiltersDelegate.swift */,
 				EADD1B062BC665FD00BE6019 /* ChangeDateDelegate.swift */,
+				EADD1B162BC6FE1700BE6019 /* RealmSavedFiltersDelegate.swift */,
 			);
 			path = Delegates;
 			sourceTree = "<group>";
@@ -382,6 +385,7 @@
 				EA1595732BC54F8900ACB6A8 /* BottomPopupViewController.swift in Sources */,
 				EAE930C22BC42FF5006A2ABC /* Button_Extension.swift in Sources */,
 				EA1595882BC5D4BD00ACB6A8 /* DetailImageViewController.swift in Sources */,
+				EADD1B172BC6FE1700BE6019 /* RealmSavedFiltersDelegate.swift in Sources */,
 				EA15957A2BC58AF900ACB6A8 /* NetworkService.swift in Sources */,
 				EA1595832BC5B75600ACB6A8 /* CustomDateFormatter.swift in Sources */,
 				EAE930B52BC3FD50006A2ABC /* MarsViewController.swift in Sources */,

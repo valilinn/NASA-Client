@@ -15,6 +15,7 @@ class HistoryViewController: UIViewController {
     private let backButton = UIButton()
     private let cellHeight: CGFloat = 150
     private var filters = [Filters]() 
+    weak var delegate: RealmSavedFiltersDelegate?
     let realm = try! Realm()
     
     override func viewDidLoad() {
@@ -26,55 +27,6 @@ class HistoryViewController: UIViewController {
         setNavBar()
         getSavedFilters()
     }
-    
-    private func setNavBar() {
-        navigationController?.navigationBar.prefersLargeTitles = true
-        navigationController?.navigationBar.isHidden = false
-        
-
-        navigationController?.setNavigationBarHidden(false, animated: true)
-        //navigationController?.viewControllers.first?.navigationItem.title = "HHHHH" title of the back button
-        navigationController?.tabBarItem.isEnabled = true
-//        navigationController?.navigationBar.barTintColor = .blue
-        
-//        navigationController?.navigationBar.isTranslucent = true
-//        UINavigationBar.appearance().backgroundColor = .green
-//        UINavigationBar.appearance().tintColor = .orange
-//        UINavigationBar.appearance().barTintColor = .cyan
-        let appearance = UINavigationBarAppearance()
-        appearance.configureWithOpaqueBackground()
-        appearance.backgroundColor = .accentOne
-        navigationController?.navigationBar.standardAppearance = appearance
-        navigationController?.navigationBar.scrollEdgeAppearance = navigationController?.navigationBar.standardAppearance
-        
-        backButton.setImage(.arrowCircleLeft, for: .normal)
-        backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
-        backButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
-        let backButtonItem = UIBarButtonItem(customView: backButton)
-        
-        // Скрываем стандартную кнопку "Назад"
-        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-        
-        // Устанавливаем свою собственную кнопку "Назад" в качестве левой кнопки навигационной панели
-        navigationItem.leftBarButtonItem = backButtonItem
-        
-        // Создайте кастомное представление для центрального элемента
-            let titleView = UIView(frame: CGRect(x: 0, y: 0, width: 200, height: 40))
-            let titleLabel = UILabel(frame: CGRect(x: 0, y: 20, width: 200, height: 40))
-            titleLabel.text = "History"
-            titleLabel.textAlignment = .center
-            titleLabel.textColor = .layerOne // Установите цвет текста по вашему выбору
-            titleLabel.font = CustomFont.largeTitle // Установите шрифт по вашему выбору
-            titleView.addSubview(titleLabel)
-
-            // Установите кастомное представление в качестве центрального элемента навигационной панели
-            navigationItem.titleView = titleView
-            
-            // Удалите заголовок из навигационной панели (если требуется)
-            navigationItem.title = ""
-    }
-    
-    
     
     @objc
     private func backButtonTapped() {
@@ -88,6 +40,49 @@ class HistoryViewController: UIViewController {
         filters = Array(filtersResults)
         historyView.tableView.reloadData()
         print("I have filters \(filters)")
+    }
+    
+    private func updateSavedFilters() {
+        getSavedFilters()
+        historyView.tableView.reloadData()
+    }
+    
+    private func setNavBar() {
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationBar.isHidden = false
+        navigationController?.setNavigationBarHidden(false, animated: true)
+        navigationController?.tabBarItem.isEnabled = true
+        
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithOpaqueBackground()
+        appearance.backgroundColor = .accentOne
+        navigationController?.navigationBar.standardAppearance = appearance
+        navigationController?.navigationBar.scrollEdgeAppearance = navigationController?.navigationBar.standardAppearance
+        setNavBarButton()
+        setNavBarTitle()
+    }
+    
+    private func setNavBarButton() {
+        backButton.setImage(.arrowCircleLeft, for: .normal)
+        backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
+        backButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        let backButtonItem = UIBarButtonItem(customView: backButton)
+        
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        navigationItem.leftBarButtonItem = backButtonItem
+    }
+    
+    private func setNavBarTitle() {
+        let titleView = UIView(frame: CGRect(x: 0, y: 0, width: 200, height: 40))
+        let titleLabel = UILabel(frame: CGRect(x: 0, y: 20, width: 200, height: 40))
+        titleLabel.text = "History"
+        titleLabel.textAlignment = .center
+        titleLabel.textColor = .layerOne
+        titleLabel.font = CustomFont.largeTitle
+        titleView.addSubview(titleLabel)
+        
+        navigationItem.titleView = titleView
+        navigationItem.title = ""
     }
 }
 
@@ -108,6 +103,29 @@ extension HistoryViewController: UITableViewDelegate, UITableViewDataSource {
         cell.configure(rover: filters[indexPath.row].rover, camera: filters[indexPath.row].camera, date: filters[indexPath.row].date)
 
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        AlertHelper.showUseFilterAlert(in: self) { [weak self] in
+            guard let filter = self?.filters[indexPath.row] else { return }
+            self?.delegate?.useSavedFilters(rover: filter.rover, camera: filter.camera, date: filter.date)
+            
+            if let navigationController = self?.navigationController {
+                navigationController.popViewController(animated: true)
+            }
+            print("Use")
+        } onDelete: { [weak self] in
+            guard let filterToDelete = self?.filters[indexPath.row] else { return }
+            try! self?.realm.write{
+                self?.realm.delete(filterToDelete)
+                self?.updateSavedFilters()
+            }
+            print("Delete")
+        }
+        
+        
     }
     
     
