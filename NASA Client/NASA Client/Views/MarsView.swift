@@ -14,14 +14,14 @@ class MarsView: UIView {
     private let containerView = UIView()
     private let navigationView = UIView()
     
-    private let title = UILabel(text: "MARS.CAMERA", fontType: .largeTitle)
+    private let title = UILabel()
     
     let calendarButton = UIButton()
     let roverFilterButton = UIButton(title: "All", image: .roverAll)
     let cameraFilterButton = UIButton(title: "All", image: .cameraAll)
     let plusButton = UIButton(image: .plus)
     
-    var dateLabel = UILabel(text: "June 6, 2019", fontType: .title2)
+    var dateLabel = UILabel()
     var tableViewHeightConstraint: Constraint?
     
     let tableView = MarsTableView()
@@ -39,6 +39,11 @@ class MarsView: UIView {
     }
     
     private func setViews() {
+        title.text = "MARS.CAMERA"// = UILabel(text: "MARS.CAMERA", fontType: .largeTitle)
+        title.font = CustomFont.largeTitle
+        dateLabel.text = "June 6, 2019"// = UILabel(text: "June 6, 2019", fontType: .title2)
+        dateLabel.font = CustomFont.title2
+        
         calendarButton.setImage(.calendar, for: .normal)
         calendarButton.layer.cornerRadius = 10
         roverFilterButton.isUserInteractionEnabled = true

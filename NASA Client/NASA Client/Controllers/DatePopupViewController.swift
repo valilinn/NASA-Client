@@ -15,7 +15,7 @@ class DatePopupViewController: UIViewController {
     var onClose: (() -> Void)?
     private let doneButton = UIButton()
     private let closeButton = UIButton()
-    private let dateLabel = UILabel(text: "Date", fontType: .title2)
+    private let dateLabel = UILabel()
 //    private var currentDate = CustomDateFormatter.getCurrentDate()
     weak var delegate: ChangeDateDelegate?
     
@@ -33,6 +33,9 @@ class DatePopupViewController: UIViewController {
         datePicker.preferredDatePickerStyle = .wheels
         datePicker.datePickerMode = .date
         datePicker.locale = Locale(identifier: "en_US")
+        
+        dateLabel.text = "Date"// = UILabel(text: "Date", fontType: .title2)
+        dateLabel.font = CustomFont.title2
         
         doneButton.setImage(.done, for: .normal)
         doneButton.tintColor = .accentOne

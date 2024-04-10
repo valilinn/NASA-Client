@@ -6,11 +6,13 @@
 //
 
 import Foundation
+import RealmSwift
 
-struct Filters {
-//    var date = CurrentDate().date
-    var rover = "All"
-    var camera = "All"
+class Filters: Object, ObjectKeyIdentifiable {
+    @Persisted(primaryKey: true) var _id: ObjectId
+    @Persisted var date = ""
+    @Persisted var rover = "All"
+    @Persisted var camera = "All"
     private let defaultValue = "All"
     
     func filterMarsPhotos(dataToFilter: [MarsRoverPhotos.Photo]) -> [MarsRoverPhotos.Photo] {

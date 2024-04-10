@@ -7,8 +7,11 @@
 
 import UIKit
 import SnapKit
+import RealmSwift
 
 class MarsViewController: UIViewController {
+    
+    let realm = try! Realm()
     
     private let marsView = MarsView()
     private var archiveButton = UIButton.floatingButton()
@@ -71,6 +74,7 @@ class MarsViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
     override func viewDidLayoutSubviews() {
@@ -132,7 +136,7 @@ class MarsViewController: UIViewController {
         marsView.calendarButton.addTarget(self, action: #selector(openDatePicker), for: .touchUpInside)
         marsView.roverFilterButton.addTarget(self, action: #selector(openRoverPicker), for: .touchUpInside)
         marsView.cameraFilterButton.addTarget(self, action: #selector(openCameraPicker), for: .touchUpInside)
-        marsView.plusButton.addTarget(self, action: #selector(saveFilterButton), for: .touchUpInside)
+        marsView.plusButton.addTarget(self, action: #selector(saveFilterButtonTapped), for: .touchUpInside)
     }
     
     @objc
@@ -192,7 +196,15 @@ class MarsViewController: UIViewController {
     }
     
     @objc
-    func saveFilterButton() {
+    func saveFilterButtonTapped() {
+        try! realm.write{
+            filters.date = currentDate
+            realm.add(filters)
+            let config = Realm.Configuration.defaultConfiguration
+            if let url = config.fileURL {
+                print(url.absoluteString)
+            }
+        }
     }
 }
 

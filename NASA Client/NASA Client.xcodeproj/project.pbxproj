@@ -26,12 +26,14 @@
 		EA2DE4DA2BC3DA30002A8DBC /* Base in Resources */ = {isa = PBXBuildFile; fileRef = EA2DE4D92BC3DA30002A8DBC /* Base */; };
 		EACCE5F32BC50BFE00FCCDBB /* NSAttributedString_Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EACCE5F22BC50BFE00FCCDBB /* NSAttributedString_Extension.swift */; };
 		EADD1B072BC665FD00BE6019 /* ChangeDateDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EADD1B062BC665FD00BE6019 /* ChangeDateDelegate.swift */; };
+		EADD1B0A2BC68D3D00BE6019 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = EADD1B092BC68D3D00BE6019 /* Realm */; };
+		EADD1B0C2BC68D3D00BE6019 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = EADD1B0B2BC68D3D00BE6019 /* RealmSwift */; };
+		EADD1B0E2BC6B56800BE6019 /* CustomFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = EADD1B0D2BC6B56800BE6019 /* CustomFont.swift */; };
 		EAE930AB2BC3ED54006A2ABC /* PreloaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE930AA2BC3ED54006A2ABC /* PreloaderView.swift */; };
 		EAE930AE2BC3EFCA006A2ABC /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = EAE930AD2BC3EFCA006A2ABC /* Lottie */; };
 		EAE930B22BC3FA98006A2ABC /* SF-Pro.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EAE930B02BC3FA98006A2ABC /* SF-Pro.ttf */; };
 		EAE930B32BC3FA98006A2ABC /* SF-Pro-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EAE930B12BC3FA98006A2ABC /* SF-Pro-Italic.ttf */; };
 		EAE930B52BC3FD50006A2ABC /* MarsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE930B42BC3FD50006A2ABC /* MarsViewController.swift */; };
-		EAE930B72BC40141006A2ABC /* UILabel_Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE930B62BC40141006A2ABC /* UILabel_Extension.swift */; };
 		EAE930BC2BC40610006A2ABC /* loader.json in Resources */ = {isa = PBXBuildFile; fileRef = EAE930BB2BC4060F006A2ABC /* loader.json */; };
 		EAE930BE2BC40FCF006A2ABC /* MarsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE930BD2BC40FCF006A2ABC /* MarsView.swift */; };
 		EAE930C22BC42FF5006A2ABC /* Button_Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE930C12BC42FF5006A2ABC /* Button_Extension.swift */; };
@@ -62,11 +64,11 @@
 		EA2DE4DB2BC3DA30002A8DBC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EACCE5F22BC50BFE00FCCDBB /* NSAttributedString_Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSAttributedString_Extension.swift; sourceTree = "<group>"; };
 		EADD1B062BC665FD00BE6019 /* ChangeDateDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeDateDelegate.swift; sourceTree = "<group>"; };
+		EADD1B0D2BC6B56800BE6019 /* CustomFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFont.swift; sourceTree = "<group>"; };
 		EAE930AA2BC3ED54006A2ABC /* PreloaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreloaderView.swift; sourceTree = "<group>"; };
 		EAE930B02BC3FA98006A2ABC /* SF-Pro.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro.ttf"; sourceTree = "<group>"; };
 		EAE930B12BC3FA98006A2ABC /* SF-Pro-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Italic.ttf"; sourceTree = "<group>"; };
 		EAE930B42BC3FD50006A2ABC /* MarsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarsViewController.swift; sourceTree = "<group>"; };
-		EAE930B62BC40141006A2ABC /* UILabel_Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILabel_Extension.swift; sourceTree = "<group>"; };
 		EAE930BB2BC4060F006A2ABC /* loader.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loader.json; sourceTree = "<group>"; };
 		EAE930BD2BC40FCF006A2ABC /* MarsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarsView.swift; sourceTree = "<group>"; };
 		EAE930C12BC42FF5006A2ABC /* Button_Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button_Extension.swift; sourceTree = "<group>"; };
@@ -83,6 +85,8 @@
 			files = (
 				EA1595862BC5C41F00ACB6A8 /* Kingfisher in Frameworks */,
 				19EB938467EB9E0AFC9BB086 /* Pods_NASA_Client.framework in Frameworks */,
+				EADD1B0A2BC68D3D00BE6019 /* Realm in Frameworks */,
+				EADD1B0C2BC68D3D00BE6019 /* RealmSwift in Frameworks */,
 				EAE930AE2BC3EFCA006A2ABC /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -161,8 +165,8 @@
 			isa = PBXGroup;
 			children = (
 				EACCE5F22BC50BFE00FCCDBB /* NSAttributedString_Extension.swift */,
-				EAE930B62BC40141006A2ABC /* UILabel_Extension.swift */,
 				EAE930C12BC42FF5006A2ABC /* Button_Extension.swift */,
+				EADD1B0D2BC6B56800BE6019 /* CustomFont.swift */,
 			);
 			path = ViewExtensions;
 			sourceTree = "<group>";
@@ -238,6 +242,8 @@
 			packageProductDependencies = (
 				EAE930AD2BC3EFCA006A2ABC /* Lottie */,
 				EA1595852BC5C41F00ACB6A8 /* Kingfisher */,
+				EADD1B092BC68D3D00BE6019 /* Realm */,
+				EADD1B0B2BC68D3D00BE6019 /* RealmSwift */,
 			);
 			productName = "NASA Client";
 			productReference = EA2DE4CA2BC3DA2C002A8DBC /* NASA Client.app */;
@@ -270,6 +276,7 @@
 			packageReferences = (
 				EAE930AC2BC3EFCA006A2ABC /* XCRemoteSwiftPackageReference "lottie-ios" */,
 				EA1595842BC5C41F00ACB6A8 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				EADD1B082BC68D3D00BE6019 /* XCRemoteSwiftPackageReference "realm-swift" */,
 			);
 			productRefGroup = EA2DE4CB2BC3DA2C002A8DBC /* Products */;
 			projectDirPath = "";
@@ -361,8 +368,8 @@
 				EAE930B52BC3FD50006A2ABC /* MarsViewController.swift in Sources */,
 				EACCE5F32BC50BFE00FCCDBB /* NSAttributedString_Extension.swift in Sources */,
 				EA15957D2BC58C1E00ACB6A8 /* MarsRoverPhotos.swift in Sources */,
-				EAE930B72BC40141006A2ABC /* UILabel_Extension.swift in Sources */,
 				EAE930C62BC48C92006A2ABC /* MarsTableView.swift in Sources */,
+				EADD1B0E2BC6B56800BE6019 /* CustomFont.swift in Sources */,
 				EADD1B072BC665FD00BE6019 /* ChangeDateDelegate.swift in Sources */,
 				EAE930AB2BC3ED54006A2ABC /* PreloaderView.swift in Sources */,
 			);
@@ -591,6 +598,14 @@
 				minimumVersion = 7.11.0;
 			};
 		};
+		EADD1B082BC68D3D00BE6019 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		EAE930AC2BC3EFCA006A2ABC /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/airbnb/lottie-ios.git";
@@ -606,6 +621,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = EA1595842BC5C41F00ACB6A8 /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
+		};
+		EADD1B092BC68D3D00BE6019 /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EADD1B082BC68D3D00BE6019 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = Realm;
+		};
+		EADD1B0B2BC68D3D00BE6019 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EADD1B082BC68D3D00BE6019 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
 		};
 		EAE930AD2BC3EFCA006A2ABC /* Lottie */ = {
 			isa = XCSwiftPackageProductDependency;

@@ -15,7 +15,7 @@ class BottomPopupViewController: UIViewController {
     var onClose: (() -> Void)?
     private let doneButton = UIButton()
     private let closeButton = UIButton()
-    private let nameLabel = UILabel(text: "Name", fontType: .title2)
+    private let nameLabel = UILabel()
     weak var delegate: SetupFiltersDelegate?
     private var selectedFilter = "All"
     
@@ -45,6 +45,9 @@ class BottomPopupViewController: UIViewController {
     private func setupViews() {
         contentView.backgroundColor = .backgroundOne
         contentView.layer.cornerRadius = 48
+        
+//        nameLabel.text = "Name" //UILabel(text: "Name", fontType: .title2)
+        nameLabel.font = CustomFont.title2
         
         doneButton.setImage(.done, for: .normal)
         doneButton.tintColor = .accentOne
