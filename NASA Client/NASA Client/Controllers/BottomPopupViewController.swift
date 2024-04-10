@@ -17,7 +17,7 @@ class BottomPopupViewController: UIViewController {
     private let closeButton = UIButton()
     private let nameLabel = UILabel(text: "Name", fontType: .title2)
     weak var delegate: SetupFiltersDelegate?
-//    private var selectedFilter = ""
+    private var selectedFilter = "All"
     
     var data: [String] //["All", "Элемент 1", "Элемент 2", "Элемент 3"]
     var nameOfTheView: String
@@ -55,12 +55,22 @@ class BottomPopupViewController: UIViewController {
     
     private func setupButtons() {
         closeButton.addTarget(self, action: #selector(closeButtonTapped), for: .touchUpInside)
+        doneButton.addTarget(self, action: #selector(doneButtonTapped), for: .touchUpInside)
     }
     
     @objc
     func closeButtonTapped() {
         dismiss(animated: true)
         self.onClose?()
+    }
+    
+    @objc
+    func doneButtonTapped() {
+        dismiss(animated: true)
+        self.onClose?()
+        guard let name = nameLabel.text?.lowercased() else { return }
+        delegate?.updateSelectedFilter(filterName: name, filterComponent: selectedFilter)
+        print("Вибраний фільтр: \(name). Вибране значення: \(selectedFilter)")
     }
     
     private func setupConstraints() {
@@ -113,9 +123,12 @@ extension BottomPopupViewController: UIPickerViewDataSource, UIPickerViewDelegat
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-//        delegate?.updateSelectedFilter(filter: data[row])
+        
+//        delegate?.updateSelectedFilter(filterName: nameLabel.text ?? "", filterComponent: data[component])
+//            print("Выбранное значение: \(data[component])")
+        print(row)
+        selectedFilter = data[row]
     }
-    
     
 }
 

@@ -146,6 +146,7 @@ class MarsViewController: UIViewController {
     @objc
     func openPicker(data: [String], nameOfTheView: String) {
         let popupVC = BottomPopupViewController(data: data, nameOfTheView: nameOfTheView)
+        popupVC.delegate = self
         popupVC.modalPresentationStyle = .overCurrentContext
         popupVC.modalTransitionStyle = .crossDissolve
         
@@ -223,12 +224,20 @@ extension MarsViewController: UITableViewDelegate, UITableViewDataSource {
 }
 
 extension MarsViewController: SetupFiltersDelegate {
-    func updateSelectedFilter() {
-        
+    func updateSelectedFilter(filterName: String, filterComponent: String) {
+        switch filterName {
+        case "rover":
+            marsView.roverFilterButton.setTitle(filterComponent, for: .normal)
+            filters.rover = filterComponent
+            toFilterMarsPhotos()
+        case "camera":
+            marsView.cameraFilterButton.setTitle(filterComponent, for: .normal)
+            filters.camera = filterComponent
+            toFilterMarsPhotos()
+        default:
+            print("Ні один фільтр не був змінений (делегат)")
+        }
     }
-    
-
-    
     
 }
 
