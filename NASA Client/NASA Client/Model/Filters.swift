@@ -10,7 +10,7 @@ import Foundation
 struct Filters {
 //    var date = CurrentDate().date
     var rover = ""
-    var camera = ""
+    var camera = "Mast Camera"
     
     func filterMarsPhotos(dataToFilter: [MarsRoverPhotos.Photo]) -> [MarsRoverPhotos.Photo] {
         var filteredArray = dataToFilter
@@ -28,7 +28,7 @@ struct Filters {
             print("NO FILTERS")
         }
         
-        print(filteredArray)
+        print("FILTERED ARRAY\(filteredArray)")
         return filteredArray
     }
 }

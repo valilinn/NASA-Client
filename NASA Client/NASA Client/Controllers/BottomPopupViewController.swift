@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class CameraPopupViewController: UIViewController {
+class BottomPopupViewController: UIViewController {
     
     let contentView = UIView()
     let pickerView = UIPickerView()
@@ -16,12 +16,14 @@ class CameraPopupViewController: UIViewController {
     private let doneButton = UIButton()
     private let closeButton = UIButton()
     private let nameLabel = UILabel(text: "Name", fontType: .title2)
+    weak var delegate: SetupFiltersDelegate?
+//    private var selectedFilter = ""
     
-    var dataTest: [String] //["All", "Элемент 1", "Элемент 2", "Элемент 3"]
+    var data: [String] //["All", "Элемент 1", "Элемент 2", "Элемент 3"]
     var nameOfTheView: String
     
     init(data: [String], nameOfTheView: String) {
-        self.dataTest = data
+        self.data = data
         self.nameOfTheView = nameOfTheView
         super.init(nibName: nil, bundle: nil)
     }
@@ -96,26 +98,27 @@ class CameraPopupViewController: UIViewController {
     }
 }
 
-extension CameraPopupViewController: UIPickerViewDataSource, UIPickerViewDelegate {
+extension BottomPopupViewController: UIPickerViewDataSource, UIPickerViewDelegate {
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return dataTest.count
+        return data.count
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return dataTest[row]
+        return data[row]
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        // добавить код для обработки выбранного элемента здесь
+//        delegate?.updateSelectedFilter(filter: data[row])
     }
     
     
 }
+
 
 //#Preview {
 //    CameraPopupViewController()

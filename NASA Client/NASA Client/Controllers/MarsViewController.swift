@@ -31,6 +31,7 @@ class MarsViewController: UIViewController {
 //an array of all data
     private var roverPhotosDataArray = [MarsRoverPhotos.Photo]() {
         didSet {
+            marsView.tableViewHeightConstraint?.update(offset: CGFloat(roverPhotosDataArray.count) * cellHeight)
             marsView.tableView.tableView.reloadData()
         }
     }
@@ -55,8 +56,6 @@ class MarsViewController: UIViewController {
         setupButtons()
         setupOverlay()
         fetchRoverNames()
-        
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -91,7 +90,6 @@ class MarsViewController: UIViewController {
             case .success(let roverPhotosData):
                 DispatchQueue.main.async {
                     self.roverPhotosDataArray.append(contentsOf: roverPhotosData.photos)
-                    self.toFilterMarsPhotos()
 //                    print(self.roverPhotosDataArray)
                 }
             case .failure(let error):
@@ -102,6 +100,7 @@ class MarsViewController: UIViewController {
     
     private func toFilterMarsPhotos() {
         filteredMarsPhotos = filters.filterMarsPhotos(dataToFilter: roverPhotosDataArray)
+//        roverPhotosDataArray = filteredMarsPhotos
         marsView.tableView.tableView.reloadData()
     }
     
@@ -146,7 +145,7 @@ class MarsViewController: UIViewController {
     
     @objc
     func openPicker(data: [String], nameOfTheView: String) {
-        let popupVC = CameraPopupViewController(data: data, nameOfTheView: nameOfTheView)
+        let popupVC = BottomPopupViewController(data: data, nameOfTheView: nameOfTheView)
         popupVC.modalPresentationStyle = .overCurrentContext
         popupVC.modalTransitionStyle = .crossDissolve
         
@@ -162,18 +161,23 @@ class MarsViewController: UIViewController {
     }
     
     @objc
-    func openCameraPicker() {
-        openPicker(data: ["All", "Элемент 1", "Элемент 2", "Элемент 3"], nameOfTheView: "Camera")
+    func openRoverPicker() {
+        guard let roversData = roversData?.rovers else { return }
+        let roversList = roversData.map { $0.name }
+        var roversListWithAll = ["All"] + (roversList)
+        openPicker(data: roversListWithAll, nameOfTheView: "Rover")
     }
     
     @objc
-    func openRoverPicker() {
-        openPicker(data: ["All", "Rover 1", "Rover 2", "Rover 3"], nameOfTheView: "Rover")
+    func openCameraPicker() {
+        let camerasList = Set(roverPhotosDataArray.map { $0.camera.fullName })
+        var camerasListWithAll = ["All"] + Array(camerasList)
+        openPicker(data: camerasListWithAll, nameOfTheView: "Camera")
     }
     
     @objc
     func saveFilterButton() {
-        
+        toFilterMarsPhotos()
     }
     
 }
@@ -185,13 +189,24 @@ extension MarsViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        filteredMarsPhotos.count
+        filteredMarsPhotos.isEmpty ? roverPhotosDataArray.count : filteredMarsPhotos.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: InfoViewCell.reuseID, for: indexPath) as! InfoViewCell
+        if filteredMarsPhotos.isEmpty {
+            cell.configure(rover: roverPhotosDataArray[indexPath.row].rover.name,
+                           camera: roverPhotosDataArray[indexPath.row].camera.fullName,
+                           date: roverPhotosDataArray[indexPath.row].earthDate,
+                           imageUrl: roverPhotosDataArray[indexPath.row].imgSrc)
+        } else {
+            cell.configure(rover: filteredMarsPhotos[indexPath.row].rover.name,
+                           camera: filteredMarsPhotos[indexPath.row].camera.fullName,
+                           date: filteredMarsPhotos[indexPath.row].earthDate,
+                           imageUrl: filteredMarsPhotos[indexPath.row].imgSrc)
+        }
         
-        cell.configure(rover: filteredMarsPhotos[indexPath.row].rover.name, camera: filteredMarsPhotos[indexPath.row].camera.fullName, date: filteredMarsPhotos[indexPath.row].earthDate, imageUrl: filteredMarsPhotos[indexPath.row].imgSrc)
+        
         
         return cell
     }
@@ -206,6 +221,17 @@ extension MarsViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
 }
+
+extension MarsViewController: SetupFiltersDelegate {
+    func updateSelectedFilter() {
+        
+    }
+    
+
+    
+    
+}
+
 //#Preview {
 //    MarsViewController()
 //}
