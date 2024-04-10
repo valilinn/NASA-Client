@@ -16,6 +16,9 @@ class DatePopupViewController: UIViewController {
     private let doneButton = UIButton()
     private let closeButton = UIButton()
     private let dateLabel = UILabel(text: "Date", fontType: .title2)
+//    private var currentDate = CustomDateFormatter.getCurrentDate()
+    weak var delegate: ChangeDateDelegate?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
@@ -40,12 +43,20 @@ class DatePopupViewController: UIViewController {
     
     private func setupButtons() {
         closeButton.addTarget(self, action: #selector(closeButtonTapped), for: .touchUpInside)
+        doneButton.addTarget(self, action: #selector(doneButtonTapped), for: .touchUpInside)
     }
     
     @objc
     func closeButtonTapped() {
         dismiss(animated: true)
         self.onClose?()
+    }
+    
+    @objc
+    func doneButtonTapped() {
+        dismiss(animated: true)
+        self.onClose?()
+        delegate?.updateDate(selectedDate: CustomDateFormatter.formatDate(datePicker.date))
     }
     
     private func setupConstraints() {

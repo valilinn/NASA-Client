@@ -51,31 +51,76 @@ final class NetworkService {
         task.resume()
     }
     
-    func getMarsRoverPhotos(date: String, roversAll: MarsRover, completion: @escaping (Result<MarsRoverPhotos, Error>) -> ()) {
+//    func getMarsRoverPhotos(date: String, roversAll: MarsRover, completion: @escaping (Result<MarsRoverPhotos, Error>) -> ()) {
+//        for rover in roversAll.rovers {
+//            var urlStr = Gateway.https.rawValue + server + EndPoint.allRovers.rawValue + rover.name.lowercased() + EndPoint.currentRoverData.rawValue
+//            urlStr += "?earth_date=\(date)&api_key=\(apiKey)"
+//            
+//            
+//            guard let url = URL(string: urlStr) else { return }
+//            print(url)
+//            let task = session.dataTask(with: url) { data, response, error in
+//                guard let data else {
+//                    if let error {
+//                        completion(.failure(error))
+//                    }
+//                    return
+//                }
+//                let decoder = JSONDecoder()
+//                decoder.keyDecodingStrategy = .convertFromSnakeCase
+//                do {
+//                    let marsRoverPhotosData = try decoder.decode(MarsRoverPhotos.self, from: data)
+//                    completion(.success(marsRoverPhotosData))
+//                } catch {
+//                    completion(.failure(error))
+//                }
+//            }
+//            task.resume()
+//        }
+//    }
+    
+    func getMarsRoverPhotos(date: String, roversAll: MarsRover, completion: @escaping (Result<[MarsRoverPhotos.Photo], Error>) -> ()) {
+        var allPhotos: [MarsRoverPhotos.Photo] = []
+        let dispatchGroup = DispatchGroup()
+        
         for rover in roversAll.rovers {
+            dispatchGroup.enter()
+            
             var urlStr = Gateway.https.rawValue + server + EndPoint.allRovers.rawValue + rover.name.lowercased() + EndPoint.currentRoverData.rawValue
             urlStr += "?earth_date=\(date)&api_key=\(apiKey)"
             
+            guard let url = URL(string: urlStr) else {
+                dispatchGroup.leave()
+                return
+            }
             
-            guard let url = URL(string: urlStr) else { return }
             print(url)
             let task = session.dataTask(with: url) { data, response, error in
-                guard let data else {
-                    if let error {
+                defer {
+                    dispatchGroup.leave() 
+                }
+                
+                guard let data = data else {
+                    if let error = error {
                         completion(.failure(error))
                     }
                     return
                 }
+                
                 let decoder = JSONDecoder()
                 decoder.keyDecodingStrategy = .convertFromSnakeCase
                 do {
                     let marsRoverPhotosData = try decoder.decode(MarsRoverPhotos.self, from: data)
-                    completion(.success(marsRoverPhotosData))
+                    allPhotos.append(contentsOf: marsRoverPhotosData.photos)
                 } catch {
                     completion(.failure(error))
                 }
             }
             task.resume()
+        }
+        
+        dispatchGroup.notify(queue: .main) {
+            completion(.success(allPhotos))
         }
     }
 }

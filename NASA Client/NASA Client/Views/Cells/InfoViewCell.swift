@@ -41,10 +41,17 @@ class InfoViewCell: UITableViewCell {
         roverLabel.attributedText = NSMutableAttributedString.formattedString(prefix: "Rover:", value: rover, textColor: UIColor.layerOne, prefixLength: 6)
         cameraLabel.attributedText = NSMutableAttributedString.formattedString(prefix: "Camera:", value: camera, textColor: UIColor.layerOne, prefixLength: 7)
         dateLabel.attributedText = NSMutableAttributedString.formattedString(prefix: "Date:", value: date, textColor: UIColor.layerOne, prefixLength: 5)
-        
-        let droppedUrl = String(imageUrl.dropFirst(4))
-        let url = URL(string:"https\(droppedUrl)")
-        marsImageView.kf.setImage(with: url)
+        if imageUrl.prefix(5) == "http:" {
+            let droppedUrl = String(imageUrl.dropFirst(4))
+            let url = URL(string:"https\(droppedUrl)")
+            marsImageView.kf.setImage(with: url)
+        } else {
+            let url = URL(string: imageUrl)
+            marsImageView.kf.setImage(with: url)
+        }
+//        let droppedUrl = String(imageUrl.dropFirst(4))
+//        let url = URL(string:"https\(droppedUrl)")
+//        marsImageView.kf.setImage(with: url)
         
     }
   

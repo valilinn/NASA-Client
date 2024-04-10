@@ -10,3 +10,4 @@ import Foundation
 protocol SetupFiltersDelegate: AnyObject {
     func updateSelectedFilter(filterName: String, filterComponent: String)
 }
+

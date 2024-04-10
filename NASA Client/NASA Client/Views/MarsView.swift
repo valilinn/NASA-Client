@@ -15,14 +15,13 @@ class MarsView: UIView {
     private let navigationView = UIView()
     
     private let title = UILabel(text: "MARS.CAMERA", fontType: .largeTitle)
-    private let dateLabel = UILabel(text: "June 6, 2019", fontType: .title2)
     
     let calendarButton = UIButton()
     let roverFilterButton = UIButton(title: "All", image: .roverAll)
     let cameraFilterButton = UIButton(title: "All", image: .cameraAll)
     let plusButton = UIButton(image: .plus)
     
-    
+    var dateLabel = UILabel(text: "June 6, 2019", fontType: .title2)
     var tableViewHeightConstraint: Constraint?
     
     let tableView = MarsTableView()

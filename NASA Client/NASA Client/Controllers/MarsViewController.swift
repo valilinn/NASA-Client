@@ -16,32 +16,43 @@ class MarsViewController: UIViewController {
     private let spacingBetweenCells: CGFloat = 15
     private let overlayView = UIView()
     private var filters = Filters()
-    
-//    //test count row
-    private var data: CGFloat = 5
-    
-    //to get all rovers
+
     private var roversData: MarsRover? {
         didSet {
             if let rover = roversData {
-                fetchMarsRoverPhotos(rovers: rover)
+                fetchMarsRoverPhotos(rovers: rover, date: currentDate) { }
             }
         }
     }
-//an array of all data
+
     private var roverPhotosDataArray = [MarsRoverPhotos.Photo]() {
         didSet {
             marsView.tableViewHeightConstraint?.update(offset: CGFloat(roverPhotosDataArray.count) * cellHeight)
-            marsView.tableView.tableView.reloadData()
+            DispatchQueue.main.async {
+                self.marsView.tableView.tableView.reloadData()
+            }
         }
     }
     private var filteredMarsPhotos = [MarsRoverPhotos.Photo]() {
         didSet {
             marsView.tableViewHeightConstraint?.update(offset: CGFloat(filteredMarsPhotos.count) * cellHeight)
-            marsView.tableView.tableView.reloadData()
+            DispatchQueue.main.async {
+                self.marsView.tableView.tableView.reloadData()
+            }
         }
     }
     
+    private var currentDate = CustomDateFormatter.getCurrentDate() {
+        didSet {
+            if let rover = roversData {
+                filteredMarsPhotos.removeAll()
+                fetchMarsRoverPhotos(rovers: rover, date: currentDate) { self.toFilterMarsPhotos() }
+                DispatchQueue.main.async {
+                    self.marsView.tableView.tableView.reloadData()
+                }
+            }
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,8 +62,8 @@ class MarsViewController: UIViewController {
         navigationController?.isNavigationBarHidden = true
         marsView.tableView.tableView.delegate = self
         marsView.tableView.tableView.dataSource = self
-//        marsView.tableViewHeightConstraint?.update(offset: data * cellHeight)
         marsView.tableView.tableView.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 10, right: 0)
+        setupDateView()
         setupButtons()
         setupOverlay()
         fetchRoverNames()
@@ -70,13 +81,16 @@ class MarsViewController: UIViewController {
                                      height: 70)
     }
     
+    private func setupDateView() {
+        marsView.dateLabel.text = CustomDateFormatter.formatToDateForView(currentDate)
+    }
+    
     private func fetchRoverNames() {
         NetworkService.shared.getMarsRovers { result in
             switch result {
             case .success(let roversData):
-                DispatchQueue.main.async {
-                    self.roversData = roversData
-                    print(self.roversData?.rovers.map {$0.name})
+                DispatchQueue.main.async { [weak self] in
+                    self?.roversData = roversData
                 }
             case .failure(let error):
                 print(error.localizedDescription)
@@ -84,13 +98,14 @@ class MarsViewController: UIViewController {
         }
     }
     
-    private func fetchMarsRoverPhotos(rovers: MarsRover) {
-        NetworkService.shared.getMarsRoverPhotos(date: "2015-12-3", roversAll: rovers) { result in
+    private func fetchMarsRoverPhotos(rovers: MarsRover, date: String, completion: @escaping () -> ()) {
+        NetworkService.shared.getMarsRoverPhotos(date: date, roversAll: rovers) { result in
             switch result {
             case .success(let roverPhotosData):
-                DispatchQueue.main.async {
-                    self.roverPhotosDataArray.append(contentsOf: roverPhotosData.photos)
-//                    print(self.roverPhotosDataArray)
+                DispatchQueue.main.async { [weak self] in
+                    self?.roverPhotosDataArray.removeAll()
+                    self?.roverPhotosDataArray.append(contentsOf: roverPhotosData)
+                    completion()
                 }
             case .failure(let error):
                 print(error.localizedDescription)
@@ -100,7 +115,6 @@ class MarsViewController: UIViewController {
     
     private func toFilterMarsPhotos() {
         filteredMarsPhotos = filters.filterMarsPhotos(dataToFilter: roverPhotosDataArray)
-//        roverPhotosDataArray = filteredMarsPhotos
         marsView.tableView.tableView.reloadData()
     }
     
@@ -140,6 +154,7 @@ class MarsViewController: UIViewController {
                 self.overlayView.alpha = 0
             }
         }
+        popupVC.delegate = self
         present(popupVC, animated: true, completion: nil)
     }
     
@@ -165,22 +180,20 @@ class MarsViewController: UIViewController {
     func openRoverPicker() {
         guard let roversData = roversData?.rovers else { return }
         let roversList = roversData.map { $0.name }
-        var roversListWithAll = ["All"] + (roversList)
+        let roversListWithAll = ["All"] + (roversList)
         openPicker(data: roversListWithAll, nameOfTheView: "Rover")
     }
     
     @objc
     func openCameraPicker() {
         let camerasList = Set(roverPhotosDataArray.map { $0.camera.fullName })
-        var camerasListWithAll = ["All"] + Array(camerasList)
+        let camerasListWithAll = ["All"] + Array(camerasList)
         openPicker(data: camerasListWithAll, nameOfTheView: "Camera")
     }
     
     @objc
     func saveFilterButton() {
-        toFilterMarsPhotos()
     }
-    
 }
 
 extension MarsViewController: UITableViewDelegate, UITableViewDataSource {
@@ -195,32 +208,29 @@ extension MarsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: InfoViewCell.reuseID, for: indexPath) as! InfoViewCell
+        let photo: MarsRoverPhotos.Photo
+        
         if filteredMarsPhotos.isEmpty {
-            cell.configure(rover: roverPhotosDataArray[indexPath.row].rover.name,
-                           camera: roverPhotosDataArray[indexPath.row].camera.fullName,
-                           date: roverPhotosDataArray[indexPath.row].earthDate,
-                           imageUrl: roverPhotosDataArray[indexPath.row].imgSrc)
+            photo = roverPhotosDataArray[indexPath.row]
         } else {
-            cell.configure(rover: filteredMarsPhotos[indexPath.row].rover.name,
-                           camera: filteredMarsPhotos[indexPath.row].camera.fullName,
-                           date: filteredMarsPhotos[indexPath.row].earthDate,
-                           imageUrl: filteredMarsPhotos[indexPath.row].imgSrc)
+            photo = filteredMarsPhotos[indexPath.row]
         }
         
-        
-        
+        if let dateFormatted = CustomDateFormatter.formatToDateForView(photo.earthDate) {
+            cell.configure(rover: photo.rover.name,
+                           camera: photo.camera.fullName,
+                           date: dateFormatted,
+                           imageUrl: photo.imgSrc)
+        }
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        
         let vc = DetailImageViewController()
         vc.imageString = roverPhotosDataArray[indexPath.row].imgSrc
         navigationController?.pushViewController(vc, animated: true)
-        
     }
-    
 }
 
 extension MarsViewController: SetupFiltersDelegate {
@@ -238,7 +248,16 @@ extension MarsViewController: SetupFiltersDelegate {
             print("Ні один фільтр не був змінений (делегат)")
         }
     }
-    
+}
+
+extension MarsViewController: ChangeDateDelegate {
+    func updateDate(selectedDate: String) {
+        currentDate = selectedDate
+        let dateForTheView = CustomDateFormatter.formatToDateForView(selectedDate)
+        DispatchQueue.main.async { [weak self] in
+            self?.marsView.dateLabel.text = dateForTheView
+        }
+    }
 }
 
 //#Preview {

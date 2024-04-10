@@ -24,9 +24,17 @@ class DetailImageView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     func configure(image: String) {
-        let droppedUrl = String(image.dropFirst(4))
-        let url = URL(string:"https\(droppedUrl)")
-        imageView.kf.setImage(with: url)
+//        let droppedUrl = String(image.dropFirst(4))
+//        let url = URL(string:"https\(droppedUrl)")
+//        imageView.kf.setImage(with: url)
+        if image.prefix(5) == "http:" {
+            let droppedUrl = String(image.dropFirst(4))
+            let url = URL(string:"https\(droppedUrl)")
+            imageView.kf.setImage(with: url)
+        } else {
+            let url = URL(string: image)
+            imageView.kf.setImage(with: url)
+        }
     }
     
     private func setViews() {
@@ -34,7 +42,6 @@ class DetailImageView: UIView {
         
         imageView.layer.masksToBounds = true
         imageView.contentMode = .scaleAspectFit
-        imageView.image = UIImage(named: "morskieOko")
         
         closeButton.setImage(.whiteCloseButton, for: .normal)
         closeButton.tintColor = .white

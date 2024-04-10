@@ -14,7 +14,7 @@
 		EA15957D2BC58C1E00ACB6A8 /* MarsRoverPhotos.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA15957C2BC58C1D00ACB6A8 /* MarsRoverPhotos.swift */; };
 		EA15957F2BC5986E00ACB6A8 /* MarsRover.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA15957E2BC5986E00ACB6A8 /* MarsRover.swift */; };
 		EA1595812BC5B6CE00ACB6A8 /* Filters.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA1595802BC5B6CE00ACB6A8 /* Filters.swift */; };
-		EA1595832BC5B75600ACB6A8 /* CurrentDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA1595822BC5B75600ACB6A8 /* CurrentDate.swift */; };
+		EA1595832BC5B75600ACB6A8 /* CustomDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA1595822BC5B75600ACB6A8 /* CustomDateFormatter.swift */; };
 		EA1595862BC5C41F00ACB6A8 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = EA1595852BC5C41F00ACB6A8 /* Kingfisher */; };
 		EA1595882BC5D4BD00ACB6A8 /* DetailImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA1595872BC5D4BD00ACB6A8 /* DetailImageViewController.swift */; };
 		EA15958A2BC5D4DD00ACB6A8 /* DetailImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA1595892BC5D4DD00ACB6A8 /* DetailImageView.swift */; };
@@ -25,6 +25,7 @@
 		EA2DE4D72BC3DA30002A8DBC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA2DE4D62BC3DA30002A8DBC /* Assets.xcassets */; };
 		EA2DE4DA2BC3DA30002A8DBC /* Base in Resources */ = {isa = PBXBuildFile; fileRef = EA2DE4D92BC3DA30002A8DBC /* Base */; };
 		EACCE5F32BC50BFE00FCCDBB /* NSAttributedString_Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EACCE5F22BC50BFE00FCCDBB /* NSAttributedString_Extension.swift */; };
+		EADD1B072BC665FD00BE6019 /* ChangeDateDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EADD1B062BC665FD00BE6019 /* ChangeDateDelegate.swift */; };
 		EAE930AB2BC3ED54006A2ABC /* PreloaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE930AA2BC3ED54006A2ABC /* PreloaderView.swift */; };
 		EAE930AE2BC3EFCA006A2ABC /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = EAE930AD2BC3EFCA006A2ABC /* Lottie */; };
 		EAE930B22BC3FA98006A2ABC /* SF-Pro.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EAE930B02BC3FA98006A2ABC /* SF-Pro.ttf */; };
@@ -48,7 +49,7 @@
 		EA15957C2BC58C1D00ACB6A8 /* MarsRoverPhotos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarsRoverPhotos.swift; sourceTree = "<group>"; };
 		EA15957E2BC5986E00ACB6A8 /* MarsRover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarsRover.swift; sourceTree = "<group>"; };
 		EA1595802BC5B6CE00ACB6A8 /* Filters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filters.swift; sourceTree = "<group>"; };
-		EA1595822BC5B75600ACB6A8 /* CurrentDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentDate.swift; sourceTree = "<group>"; };
+		EA1595822BC5B75600ACB6A8 /* CustomDateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDateFormatter.swift; sourceTree = "<group>"; };
 		EA1595872BC5D4BD00ACB6A8 /* DetailImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailImageViewController.swift; sourceTree = "<group>"; };
 		EA1595892BC5D4DD00ACB6A8 /* DetailImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailImageView.swift; sourceTree = "<group>"; };
 		EA15958B2BC5F84000ACB6A8 /* SetupFiltersDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupFiltersDelegate.swift; sourceTree = "<group>"; };
@@ -60,6 +61,7 @@
 		EA2DE4D92BC3DA30002A8DBC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EA2DE4DB2BC3DA30002A8DBC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EACCE5F22BC50BFE00FCCDBB /* NSAttributedString_Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSAttributedString_Extension.swift; sourceTree = "<group>"; };
+		EADD1B062BC665FD00BE6019 /* ChangeDateDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeDateDelegate.swift; sourceTree = "<group>"; };
 		EAE930AA2BC3ED54006A2ABC /* PreloaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreloaderView.swift; sourceTree = "<group>"; };
 		EAE930B02BC3FA98006A2ABC /* SF-Pro.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro.ttf"; sourceTree = "<group>"; };
 		EAE930B12BC3FA98006A2ABC /* SF-Pro-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Italic.ttf"; sourceTree = "<group>"; };
@@ -102,7 +104,7 @@
 				EA15957E2BC5986E00ACB6A8 /* MarsRover.swift */,
 				EA15957C2BC58C1D00ACB6A8 /* MarsRoverPhotos.swift */,
 				EA1595802BC5B6CE00ACB6A8 /* Filters.swift */,
-				EA1595822BC5B75600ACB6A8 /* CurrentDate.swift */,
+				EA1595822BC5B75600ACB6A8 /* CustomDateFormatter.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -136,6 +138,7 @@
 				EAE930B82BC40149006A2ABC /* ViewExtensions */,
 				EA1595782BC58ADA00ACB6A8 /* Services */,
 				EA15958B2BC5F84000ACB6A8 /* SetupFiltersDelegate.swift */,
+				EADD1B062BC665FD00BE6019 /* ChangeDateDelegate.swift */,
 				EA2DE4D62BC3DA30002A8DBC /* Assets.xcassets */,
 				EAE930AF2BC3FA84006A2ABC /* Fonts */,
 				EA2DE4D82BC3DA30002A8DBC /* LaunchScreen.storyboard */,
@@ -354,12 +357,13 @@
 				EAE930C22BC42FF5006A2ABC /* Button_Extension.swift in Sources */,
 				EA1595882BC5D4BD00ACB6A8 /* DetailImageViewController.swift in Sources */,
 				EA15957A2BC58AF900ACB6A8 /* NetworkService.swift in Sources */,
-				EA1595832BC5B75600ACB6A8 /* CurrentDate.swift in Sources */,
+				EA1595832BC5B75600ACB6A8 /* CustomDateFormatter.swift in Sources */,
 				EAE930B52BC3FD50006A2ABC /* MarsViewController.swift in Sources */,
 				EACCE5F32BC50BFE00FCCDBB /* NSAttributedString_Extension.swift in Sources */,
 				EA15957D2BC58C1E00ACB6A8 /* MarsRoverPhotos.swift in Sources */,
 				EAE930B72BC40141006A2ABC /* UILabel_Extension.swift in Sources */,
 				EAE930C62BC48C92006A2ABC /* MarsTableView.swift in Sources */,
+				EADD1B072BC665FD00BE6019 /* ChangeDateDelegate.swift in Sources */,
 				EAE930AB2BC3ED54006A2ABC /* PreloaderView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
