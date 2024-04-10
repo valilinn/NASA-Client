@@ -10,7 +10,7 @@ import UIKit
 extension NSMutableAttributedString {
     static func formattedString(prefix: String, value: String, textColor: UIColor, prefixLength: Int) -> NSMutableAttributedString {
         let attributes: [NSAttributedString.Key: Any] = [
-            .font: UIFont(name: "SFPro-Regular", size: 16) ?? UIFont.systemFont(ofSize: 16),
+            .font: CustomFont.body,
             .foregroundColor: textColor
         ]
         let attributedString = NSMutableAttributedString(string: "\(prefix) \(value)", attributes: attributes)

@@ -141,7 +141,8 @@ class MarsViewController: UIViewController {
     
     @objc
     func archiveButtonTapped() {
-        navigationController?.pushViewController(HistoryViewController(), animated: true)
+        let vc = HistoryViewController()
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     @objc
@@ -197,15 +198,25 @@ class MarsViewController: UIViewController {
     
     @objc
     func saveFilterButtonTapped() {
-        try! realm.write{
-            filters.date = currentDate
-            realm.add(filters)
-            let config = Realm.Configuration.defaultConfiguration
-            if let url = config.fileURL {
-                print(url.absoluteString)
+        AlertHelper.showSaveFilterAlert(in: self) {
+            try! self.realm.write {
+                self.filters.date = self.currentDate
+                self.realm.add(self.filters)
+                let config = Realm.Configuration.defaultConfiguration
+                if let url = config.fileURL {
+                    print(url.absoluteString)
+                }
             }
         }
+//        AlertHelper.showUseFilterAlert(in: self) {
+//            print("Use")
+//        } onDelete: {
+//            print("Delete")
+//        }
+
     }
+    
+    
 }
 
 extension MarsViewController: UITableViewDelegate, UITableViewDataSource {
@@ -240,7 +251,7 @@ extension MarsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let vc = DetailImageViewController()
-        vc.imageString = roverPhotosDataArray[indexPath.row].imgSrc
+        vc.imageString = filteredMarsPhotos[indexPath.row].imgSrc
         navigationController?.pushViewController(vc, animated: true)
     }
 }

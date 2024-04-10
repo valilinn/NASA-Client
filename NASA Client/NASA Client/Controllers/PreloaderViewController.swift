@@ -16,7 +16,5 @@ class PreloaderViewController: UIViewController {
         view = preloaderView
         
     }
-
-
 }
 
