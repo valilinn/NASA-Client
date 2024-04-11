@@ -21,10 +21,12 @@ class MarsView: UIView {
     let cameraFilterButton = UIButton(title: "All", image: .cameraAll)
     let plusButton = UIButton(image: .plus)
     
+//    let marsEmptyView = MarsEmptyView()
+    let tableView = MarsTableView()
+    
     var dateLabel = UILabel()
     var tableViewHeightConstraint: Constraint?
     
-    let tableView = MarsTableView()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -123,6 +125,12 @@ class MarsView: UIView {
             $0.bottom.equalTo(containerView.snp.bottom).offset(-16)
             tableViewHeightConstraint = $0.height.equalTo(1).constraint
         }
+        
+//        containerView.addSubview(marsEmptyView)
+//        marsEmptyView.snp.makeConstraints {
+//            $0.top.equalTo(navigationView.snp.bottom).offset(250)
+//            $0.centerX.equalTo(containerView.snp.centerX)
+//        }
         
         
     }

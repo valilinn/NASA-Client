@@ -56,7 +56,7 @@ class HistoryViewController: UIViewController {
     }
     
     private func setNavBar() {
-        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationBar.prefersLargeTitles = false
         navigationController?.navigationBar.isHidden = false
         navigationController?.setNavigationBarHidden(false, animated: true)
         navigationController?.tabBarItem.isEnabled = true
@@ -82,7 +82,7 @@ class HistoryViewController: UIViewController {
     
     private func setNavBarTitle() {
         let titleView = UIView(frame: CGRect(x: 0, y: 0, width: 200, height: 40))
-        let titleLabel = UILabel(frame: CGRect(x: 0, y: 20, width: 200, height: 40))
+        let titleLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 40))
         titleLabel.text = "History"
         titleLabel.textAlignment = .center
         titleLabel.textColor = .layerOne
@@ -108,7 +108,11 @@ extension HistoryViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: HistoryViewCell.reuseID, for: indexPath) as! HistoryViewCell
         
-        cell.configure(rover: filters[indexPath.row].rover, camera: filters[indexPath.row].camera, date: filters[indexPath.row].date)
+        if let dateFormatted = CustomDateFormatter.formatToDateForView(filters[indexPath.row].date) {
+            cell.configure(rover: filters[indexPath.row].rover, camera: filters[indexPath.row].camera, date: dateFormatted)
+        }
+        
+//        cell.configure(rover: filters[indexPath.row].rover, camera: filters[indexPath.row].camera, date: filters[indexPath.row].date)
 
         return cell
     }

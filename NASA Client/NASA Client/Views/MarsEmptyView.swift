@@ -1,5 +1,5 @@
 //
-//  HistoryEmptyView.swift
+//  MarsEmptyView.swift
 //  NASA Client
 //
 //  Created by Валентина Лінчук on 11/04/2024.
@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class HistoryEmptyView: UIView {
+class MarsEmptyView: UIView {
     
     private let containerView = UIView()
     private let title = UILabel()
@@ -26,9 +26,11 @@ class HistoryEmptyView: UIView {
     }
     
     private func setViews() {
-        title.text = "Browsing history is empty."
+        title.text = "There are no images \n from this day with these filters."
+        title.numberOfLines = 2
         title.font = CustomFont.body
         title.textColor = .layerTwo
+        title.textAlignment = .center
         
         imageView.image = .historyEmpty
         imageView.contentMode = .scaleAspectFit
@@ -54,3 +56,4 @@ class HistoryEmptyView: UIView {
         }
     }
 }
+

@@ -31,28 +31,17 @@ class MarsViewController: UIViewController {
     private var roverPhotosDataArray = [MarsRoverPhotos.Photo]() {
         didSet {
             marsView.tableViewHeightConstraint?.update(offset: CGFloat(roverPhotosDataArray.count) * cellHeight)
+//            setView()
             updateTableView()
         }
     }
     private var filteredMarsPhotos = [MarsRoverPhotos.Photo]() {
         didSet {
             marsView.tableViewHeightConstraint?.update(offset: CGFloat(filteredMarsPhotos.count) * cellHeight)
+//            setView()
             updateTableView()
         }
     }
-    
-//    private var currentDate = CustomDateFormatter.getCurrentDate() {
-//        didSet {
-//            if let rover = roversData {
-//                filteredMarsPhotos.removeAll()
-//                fetchMarsRoverPhotos(rovers: rover, date: currentDate)
-//                DispatchQueue.main.async { [weak self] in
-//                    self?.updateFilterLabelsToDefault()
-//                    self?.marsView.tableView.tableView.reloadData()
-//                }
-//            }
-//        }
-//    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -68,6 +57,7 @@ class MarsViewController: UIViewController {
         setupOverlay()
 //        showPreloader()
         fetchRoverNames()
+//        setView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -82,6 +72,18 @@ class MarsViewController: UIViewController {
                                      width: 70,
                                      height: 70)
     }
+    
+//    private func setView() {
+//        if filteredMarsPhotos.isEmpty {
+//            if roverPhotosDataArray.isEmpty {
+//                marsView.tableView.isHidden = true
+//                marsView.marsEmptyView.isHidden = false
+//            }
+//        } else {
+//            marsView.tableView.isHidden = false
+//            marsView.marsEmptyView.isHidden = true
+//        }
+//    }
     
     private func setupDateView() {
         marsView.dateLabel.text = CustomDateFormatter.formatToDateForView(filters.date)
@@ -283,8 +285,12 @@ extension MarsViewController: UITableViewDelegate, UITableViewDataSource {
         
         if filteredMarsPhotos.isEmpty {
             photo = roverPhotosDataArray[indexPath.row]
+//            marsView.tableView.isHidden = false
+//            marsView.marsEmptyView.isHidden = true
         } else {
             photo = filteredMarsPhotos[indexPath.row]
+//            marsView.tableView.isHidden = false
+//            marsView.marsEmptyView.isHidden = true
         }
         
         if let dateFormatted = CustomDateFormatter.formatToDateForView(photo.earthDate) {

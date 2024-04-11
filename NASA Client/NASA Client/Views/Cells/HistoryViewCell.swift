@@ -57,7 +57,7 @@ class HistoryViewCell: UITableViewCell {
         
         cameraLabel.text = "Front Hazard Avoidance Camera" //= UILabel(text: "Front Hazard Avoidance Camera", fontType: .body2)
         cameraLabel.font = CustomFont.body2
-        cameraLabel.numberOfLines = 2
+        cameraLabel.numberOfLines = 1
         
         dateLabel.text = "June 6, 2019" //= UILabel(text: "June 6, 2019", fontType: .body2)
         dateLabel.font = CustomFont.body2

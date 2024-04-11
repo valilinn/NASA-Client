@@ -34,6 +34,7 @@
 		EADD1B152BC6D82600BE6019 /* AlertHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = EADD1B142BC6D82600BE6019 /* AlertHelper.swift */; };
 		EADD1B172BC6FE1700BE6019 /* RealmSavedFiltersDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EADD1B162BC6FE1700BE6019 /* RealmSavedFiltersDelegate.swift */; };
 		EADD1B192BC7A31800BE6019 /* HistoryEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EADD1B182BC7A31800BE6019 /* HistoryEmptyView.swift */; };
+		EADD1B1B2BC7D06400BE6019 /* MarsEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EADD1B1A2BC7D06400BE6019 /* MarsEmptyView.swift */; };
 		EAE930AB2BC3ED54006A2ABC /* PreloaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE930AA2BC3ED54006A2ABC /* PreloaderView.swift */; };
 		EAE930AE2BC3EFCA006A2ABC /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = EAE930AD2BC3EFCA006A2ABC /* Lottie */; };
 		EAE930B22BC3FA98006A2ABC /* SF-Pro.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EAE930B02BC3FA98006A2ABC /* SF-Pro.ttf */; };
@@ -75,6 +76,7 @@
 		EADD1B142BC6D82600BE6019 /* AlertHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertHelper.swift; sourceTree = "<group>"; };
 		EADD1B162BC6FE1700BE6019 /* RealmSavedFiltersDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmSavedFiltersDelegate.swift; sourceTree = "<group>"; };
 		EADD1B182BC7A31800BE6019 /* HistoryEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryEmptyView.swift; sourceTree = "<group>"; };
+		EADD1B1A2BC7D06400BE6019 /* MarsEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarsEmptyView.swift; sourceTree = "<group>"; };
 		EAE930AA2BC3ED54006A2ABC /* PreloaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreloaderView.swift; sourceTree = "<group>"; };
 		EAE930B02BC3FA98006A2ABC /* SF-Pro.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro.ttf"; sourceTree = "<group>"; };
 		EAE930B12BC3FA98006A2ABC /* SF-Pro-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Italic.ttf"; sourceTree = "<group>"; };
@@ -209,6 +211,7 @@
 			children = (
 				EAE930AA2BC3ED54006A2ABC /* PreloaderView.swift */,
 				EAE930BD2BC40FCF006A2ABC /* MarsView.swift */,
+				EADD1B1A2BC7D06400BE6019 /* MarsEmptyView.swift */,
 				EAE930C52BC48C92006A2ABC /* MarsTableView.swift */,
 				EA1595892BC5D4DD00ACB6A8 /* DetailImageView.swift */,
 				EADD1B0F2BC6BBC600BE6019 /* HistoryView.swift */,
@@ -385,6 +388,7 @@
 				EA15957F2BC5986E00ACB6A8 /* MarsRover.swift in Sources */,
 				EAE930BE2BC40FCF006A2ABC /* MarsView.swift in Sources */,
 				EA1595812BC5B6CE00ACB6A8 /* Filters.swift in Sources */,
+				EADD1B1B2BC7D06400BE6019 /* MarsEmptyView.swift in Sources */,
 				EA1595732BC54F8900ACB6A8 /* BottomPopupViewController.swift in Sources */,
 				EAE930C22BC42FF5006A2ABC /* Button_Extension.swift in Sources */,
 				EA1595882BC5D4BD00ACB6A8 /* DetailImageViewController.swift in Sources */,

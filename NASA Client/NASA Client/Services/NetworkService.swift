@@ -14,7 +14,7 @@ final class NetworkService {
     static let shared = NetworkService(); private init() { }
     private let server = "api.nasa.gov"
     private let session = URLSession.shared
-    private let apiKey = "URR7fWdZm1Um6SCIf7KS0qEcA9RH7GmLu8eglWK8"
+    private let apiKey = "RUSxd183cDyDVTWfpzacoeG71pT7VpJltKxp7Xkw"
     
     private enum Gateway: String {
         case http = "http://"
