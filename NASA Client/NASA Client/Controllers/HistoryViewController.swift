@@ -28,24 +28,6 @@ class HistoryViewController: UIViewController {
         setView()
     }
     
-    @objc
-    private func backButtonTapped() {
-        if let navigationController = self.navigationController {
-            navigationController.popViewController(animated: true)
-        }
-    }
-    
-    private func getSavedFilters() {
-        let filtersResults = realm.objects(Filters.self)
-        filters = Array(filtersResults)
-        historyView.tableView.reloadData()
-    }
-    
-    private func updateSavedFilters() {
-        getSavedFilters()
-        historyView.tableView.reloadData()
-    }
-    
     private func setView() {
         view = filters.isEmpty ? HistoryEmptyView() : historyView
     }
@@ -87,8 +69,26 @@ class HistoryViewController: UIViewController {
         navigationItem.titleView = titleView
         navigationItem.title = ""
     }
+    
+    private func getSavedFilters() {
+        let filtersResults = realm.objects(Filters.self)
+        filters = Array(filtersResults)
+        historyView.tableView.reloadData()
+    }
+    
+    private func updateSavedFilters() {
+        getSavedFilters()
+        historyView.tableView.reloadData()
+    }
+    
+    @objc
+    private func backButtonTapped() {
+        if let navigationController = self.navigationController {
+            navigationController.popViewController(animated: true)
+        }
+    }
 }
-
+//MARK: -UITableViewDelegate, UITableViewDataSource
 extension HistoryViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

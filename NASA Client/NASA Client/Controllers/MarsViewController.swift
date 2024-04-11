@@ -81,9 +81,23 @@ class MarsViewController: UIViewController {
             marsView.marsEmptyView.isHidden = true
         }
     }
+    
+    private func setupButtons() {
+        archiveButton.addTarget(self, action: #selector(archiveButtonTapped), for: .touchUpInside)
+        marsView.calendarButton.addTarget(self, action: #selector(openDatePicker), for: .touchUpInside)
+        marsView.roverFilterButton.addTarget(self, action: #selector(openRoverPicker), for: .touchUpInside)
+        marsView.cameraFilterButton.addTarget(self, action: #selector(openCameraPicker), for: .touchUpInside)
+        marsView.plusButton.addTarget(self, action: #selector(saveFilterButtonTapped), for: .touchUpInside)
+    }
 
     private func setupDateView() {
         marsView.dateLabel.text = CustomDateFormatter.formatToDateForView(filters.date)
+    }
+    
+    private func updateTableView() {
+        DispatchQueue.main.async { [weak self] in
+            self?.marsView.tableView.tableView.reloadData()
+        }
     }
     
     private func showPreloader() {
@@ -93,10 +107,18 @@ class MarsViewController: UIViewController {
         present(preloaderVC, animated: true, completion: nil)
     }
     
+    private func setupOverlay() {
+        overlayView.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+        overlayView.frame = view.bounds
+        overlayView.alpha = 0
+        overlayView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        view.addSubview(overlayView)
+    }
+    
     private func hidePreloader() {
         dismiss(animated: true, completion: nil)
     }
-    
+
     private func fetchRoverNames() {
         NetworkService.shared.getMarsRovers { result in
             switch result {
@@ -135,21 +157,30 @@ class MarsViewController: UIViewController {
         updateTableView()
     }
     
-    
-    private func setupOverlay() {
-        overlayView.backgroundColor = UIColor.black.withAlphaComponent(0.5)
-        overlayView.frame = view.bounds
-        overlayView.alpha = 0
-        overlayView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        view.addSubview(overlayView)
+    private func createInstanceToSaveFilters() -> Filters {
+        let filtersToSave = Filters()
+        filtersToSave.date = filters.date
+        filtersToSave.rover = filters.rover
+        filtersToSave.camera = filters.camera
+        return filtersToSave
     }
     
-    private func setupButtons() {
-        archiveButton.addTarget(self, action: #selector(archiveButtonTapped), for: .touchUpInside)
-        marsView.calendarButton.addTarget(self, action: #selector(openDatePicker), for: .touchUpInside)
-        marsView.roverFilterButton.addTarget(self, action: #selector(openRoverPicker), for: .touchUpInside)
-        marsView.cameraFilterButton.addTarget(self, action: #selector(openCameraPicker), for: .touchUpInside)
-        marsView.plusButton.addTarget(self, action: #selector(saveFilterButtonTapped), for: .touchUpInside)
+    private func updateFilterLabelsToDefault() {
+        filters.changeFiltersToDefault()
+        DispatchQueue.main.async { [weak self] in
+            self?.marsView.roverFilterButton.setTitle(self?.filters.rover, for: .normal)
+            self?.marsView.cameraFilterButton.setTitle(self?.filters.camera, for: .normal)
+        }
+    }
+    
+    private func updateFiltersView() {
+        DispatchQueue.main.async { [weak self] in
+            guard let date = self?.filters.date else { return }
+            let dateForTheView = CustomDateFormatter.formatToDateForView(date)
+            self?.marsView.dateLabel.text = dateForTheView
+            self?.marsView.roverFilterButton.setTitle(self?.filters.rover, for: .normal)
+            self?.marsView.cameraFilterButton.setTitle(self?.filters.camera, for: .normal)
+        }
     }
     
     @objc
@@ -223,40 +254,8 @@ class MarsViewController: UIViewController {
             }
         }
     }
-    
-    private func createInstanceToSaveFilters() -> Filters {
-        let filtersToSave = Filters()
-        filtersToSave.date = filters.date
-        filtersToSave.rover = filters.rover
-        filtersToSave.camera = filters.camera
-        return filtersToSave
-    }
-    
-    private func updateFilterLabelsToDefault() {
-        filters.changeFiltersToDefault()
-        DispatchQueue.main.async { [weak self] in
-            self?.marsView.roverFilterButton.setTitle(self?.filters.rover, for: .normal)
-            self?.marsView.cameraFilterButton.setTitle(self?.filters.camera, for: .normal)
-        }
-    }
-    
-    private func updateFiltersView() {
-        DispatchQueue.main.async { [weak self] in
-            guard let date = self?.filters.date else { return }
-            let dateForTheView = CustomDateFormatter.formatToDateForView(date)
-            self?.marsView.dateLabel.text = dateForTheView
-            self?.marsView.roverFilterButton.setTitle(self?.filters.rover, for: .normal)
-            self?.marsView.cameraFilterButton.setTitle(self?.filters.camera, for: .normal)
-        }
-    }
-    
-    private func updateTableView() {
-        DispatchQueue.main.async { [weak self] in
-            self?.marsView.tableView.tableView.reloadData()
-        }
-    }
 }
-
+//MARK: -UITableViewDelegate, UITableViewDataSource
 extension MarsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -300,7 +299,7 @@ extension MarsViewController: UITableViewDelegate, UITableViewDataSource {
         navigationController?.pushViewController(vc, animated: true)
     }
 }
-
+//MARK: -SetupFiltersDelegate
 extension MarsViewController: SetupFiltersDelegate {
     func updateSelectedFilter(filterName: String, filterComponent: String) {
         switch filterName {
@@ -321,7 +320,7 @@ extension MarsViewController: SetupFiltersDelegate {
         }
     }
 }
-
+//MARK: -ChangeDateDelegate
 extension MarsViewController: ChangeDateDelegate {
     func updateDate(selectedDate: String) {
         filters.date = selectedDate
@@ -335,7 +334,7 @@ extension MarsViewController: ChangeDateDelegate {
         }
     }
 }
-
+//MARK: -RealmSavedFiltersDelegate
 extension MarsViewController: RealmSavedFiltersDelegate {
     func useSavedFilter(rover: String, camera: String, date: String) {
         filters.date = date
