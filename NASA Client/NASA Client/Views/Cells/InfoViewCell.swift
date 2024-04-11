@@ -22,12 +22,8 @@ class InfoViewCell: UITableViewCell {
    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        //to delete
-        configure(rover: "Test", camera: "Test Test Test Test Test Test Test Test Test Test", date: "Test Test Test ", imageUrl: "https://mars.nasa.gov/mars2020-raw-images/pub/ods/surface/sol/00405/ids/edr/browse/ncam/NLF_0405_0702882985_691ECM_N0201422NCAM03404_04_195J02_1200.jpg")
         setViews()
         setConstraints()
-        //to delete
-       
     }
 
     required init?(coder: NSCoder) {
@@ -38,14 +34,7 @@ class InfoViewCell: UITableViewCell {
         roverLabel.attributedText = NSMutableAttributedString.formattedString(prefix: "Rover:", value: rover, textColor: UIColor.layerOne, prefixLength: 6)
         cameraLabel.attributedText = NSMutableAttributedString.formattedString(prefix: "Camera:", value: camera, textColor: UIColor.layerOne, prefixLength: 7)
         dateLabel.attributedText = NSMutableAttributedString.formattedString(prefix: "Date:", value: date, textColor: UIColor.layerOne, prefixLength: 5)
-        if imageUrl.prefix(5) == "http:" {
-            let droppedUrl = String(imageUrl.dropFirst(4))
-            let url = URL(string:"https\(droppedUrl)")
-            marsImageView.kf.setImage(with: url)
-        } else {
-            let url = URL(string: imageUrl)
-            marsImageView.kf.setImage(with: url)
-        }
+        marsImageView.loadImage(withUrl: imageUrl)
         
     }
   
@@ -57,15 +46,15 @@ class InfoViewCell: UITableViewCell {
         containerView.layer.shadowOffset = CGSize(width: 0, height: 0)
         containerView.layer.shadowRadius = 8
         
-        roverLabel.text = "Curiosity" //= UILabel(text: "Curiosity", fontType: .body2)
+        roverLabel.text = "Curiosity"
         roverLabel.font = CustomFont.body2
         roverLabel.numberOfLines = 2
         
-        cameraLabel.text = "Front Hazard Avoidance Camera" //= UILabel(text: "Front Hazard Avoidance Camera", fontType: .body2)
+        cameraLabel.text = "Front Hazard Avoidance Camera"
         cameraLabel.font = CustomFont.body2
         cameraLabel.numberOfLines = 2
         
-        dateLabel.text = "June 6, 2019" //= UILabel(text: "June 6, 2019", fontType: .body2)
+        dateLabel.text = "June 6, 2019"
         dateLabel.font = CustomFont.body2
         dateLabel.numberOfLines = 2
         
@@ -79,7 +68,6 @@ class InfoViewCell: UITableViewCell {
         addSubview(containerView)
         
         containerView.snp.makeConstraints {
-//            $0.edges.equalToSuperview()
             $0.top.equalToSuperview().offset(8)
             $0.bottom.equalToSuperview().offset(-8)
             $0.trailing.equalToSuperview().offset(-16)
@@ -102,15 +90,10 @@ class InfoViewCell: UITableViewCell {
         containerView.addSubview(stack)
         
         stack.snp.makeConstraints {
-//            $0.top.equalTo(containerView.snp.top).offset(16)
             $0.centerY.equalTo(marsImageView.snp.centerY)
             $0.leading.equalTo(containerView.snp.leading).offset(16)
             $0.trailing.equalTo(marsImageView.snp.leading).offset(-8)
         }
-        
     }
 }
 
-//#Preview {
-//    InfoViewCell()
-//}

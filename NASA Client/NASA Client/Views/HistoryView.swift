@@ -32,12 +32,7 @@ class HistoryView: UIView {
         
         tableView.snp.makeConstraints {
             $0.edges.equalTo(safeAreaLayoutGuide.snp.edges)
-            
         }
     }
-    
 }
 
-//#Preview {
-//    HistoryViewController()
-//}

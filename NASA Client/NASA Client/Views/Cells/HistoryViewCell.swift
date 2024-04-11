@@ -23,13 +23,8 @@ class HistoryViewCell: UITableViewCell {
    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        //to delete
         setViews()
         setConstraints()
-        
-        
-        //to delete
-        configure(rover: "Test", camera: "Test Test Test Test Test Test Test Test Test Test", date: "Test Test Test")
     }
 
     required init?(coder: NSCoder) {
@@ -51,15 +46,15 @@ class HistoryViewCell: UITableViewCell {
         containerView.layer.shadowOffset = CGSize(width: 0, height: 0)
         containerView.layer.shadowRadius = 8
         
-        roverLabel.text = "Curiosity" //= UILabel(text: "Curiosity", fontType: .body2)
+        roverLabel.text = "Curiosity"
         roverLabel.font = CustomFont.body2
         roverLabel.numberOfLines = 2
         
-        cameraLabel.text = "Front Hazard Avoidance Camera" //= UILabel(text: "Front Hazard Avoidance Camera", fontType: .body2)
+        cameraLabel.text = "Front Hazard Avoidance Camera"
         cameraLabel.font = CustomFont.body2
         cameraLabel.numberOfLines = 1
         
-        dateLabel.text = "June 6, 2019" //= UILabel(text: "June 6, 2019", fontType: .body2)
+        dateLabel.text = "June 6, 2019"
         dateLabel.font = CustomFont.body2
         dateLabel.numberOfLines = 2
         
@@ -77,7 +72,6 @@ class HistoryViewCell: UITableViewCell {
         addSubview(containerView)
         
         containerView.snp.makeConstraints {
-//            $0.edges.equalToSuperview()
             $0.top.equalToSuperview().offset(8)
             $0.bottom.equalToSuperview().offset(-8)
             $0.trailing.equalToSuperview().offset(-16)
@@ -111,7 +105,3 @@ class HistoryViewCell: UITableViewCell {
         
     }
 }
-
-//#Preview {
-//    HistoryViewCell()
-//}

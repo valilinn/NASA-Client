@@ -19,9 +19,6 @@ struct AlertHelper {
         let cancelAction = UIAlertAction(title: "Cancel", style: .default)
         alert.addAction(cancelAction)
         
-//        alert.view.layer.cornerRadius = 30
-//        alert.view.layer.masksToBounds = true
-        
         viewController.present(alert, animated: true)
     }
     
@@ -40,9 +37,6 @@ struct AlertHelper {
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
         alert.addAction(cancelAction)
-        
-//        alert.view.layer.cornerRadius = 30
-//        alert.view.layer.masksToBounds = true
         
         viewController.present(alert, animated: true)
     }

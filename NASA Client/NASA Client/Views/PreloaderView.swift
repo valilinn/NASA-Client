@@ -59,7 +59,5 @@ class PreloaderView: UIView {
             $0.height.equalTo(102)
             $0.width.equalTo(333)
         }
-        
     }
-    
 }

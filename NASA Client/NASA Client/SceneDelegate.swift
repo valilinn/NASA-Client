@@ -21,7 +21,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(windowScene: scene)
         window?.overrideUserInterfaceStyle = .light
         window?.makeKeyAndVisible()
-//        window?.rootViewController = UINavigationController(rootViewController: PreloaderViewController())
         window?.rootViewController = UINavigationController(rootViewController: MarsViewController())
     }
 

@@ -7,7 +7,6 @@
 
 import UIKit
 
-
 extension UIButton {
     
     convenience init(title: String = "", image: UIImage) {
@@ -33,6 +32,4 @@ extension UIButton {
         button.setImage(.archive, for: .normal)
         return button
     }
-
-    
 }

@@ -15,7 +15,7 @@ class MarsView: UIView {
     private let navigationView = UIView()
     
     private let title = UILabel()
-    
+    var dateLabel = UILabel()
     let calendarButton = UIButton()
     let roverFilterButton = UIButton(title: "All", image: .roverAll)
     let cameraFilterButton = UIButton(title: "All", image: .cameraAll)
@@ -23,15 +23,12 @@ class MarsView: UIView {
     
     let marsEmptyView = MarsEmptyView()
     let tableView = MarsTableView()
-    
-    var dateLabel = UILabel()
+   
     var tableViewHeightConstraint: Constraint?
     
-
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = .backgroundOne
-        tableView.backgroundColor = .green
         setViews()
         setConstraints()
     }
@@ -41,9 +38,9 @@ class MarsView: UIView {
     }
     
     private func setViews() {
-        title.text = "MARS.CAMERA"// = UILabel(text: "MARS.CAMERA", fontType: .largeTitle)
+        title.text = "MARS.CAMERA"
         title.font = CustomFont.largeTitle
-        dateLabel.text = "June 6, 2019"// = UILabel(text: "June 6, 2019", fontType: .title2)
+        dateLabel.text = "June 6, 2019"
         dateLabel.font = CustomFont.title2
         
         calendarButton.setImage(.calendar, for: .normal)
@@ -51,8 +48,7 @@ class MarsView: UIView {
         roverFilterButton.isUserInteractionEnabled = true
         cameraFilterButton.isUserInteractionEnabled = true
         plusButton.isUserInteractionEnabled = true
-//        scrollView.backgroundColor = .blue
-//        containerView.backgroundColor = .gray
+
         navigationView.backgroundColor = .accentOne
     }
     
@@ -93,7 +89,7 @@ class MarsView: UIView {
         let stackButtons = UIStackView(arrangedSubviews: [roverFilterButton, cameraFilterButton])
         stackButtons.axis = .horizontal
         stackButtons.alignment = .fill
-        stackButtons.distribution = .fillEqually // или .equalSpacing, в зависимости от предпочтений. Чтобы два элемента в стеке имели одинаковую ширину
+        stackButtons.distribution = .fillEqually
         stackButtons.spacing = 15
         stackButtons.isUserInteractionEnabled = true
         
@@ -131,13 +127,6 @@ class MarsView: UIView {
             $0.top.equalTo(navigationView.snp.bottom).offset(250)
             $0.centerX.equalTo(containerView.snp.centerX)
         }
-        
-        
     }
-    
-
 }
 
-//#Preview {
-//    MarsViewController()
-//}

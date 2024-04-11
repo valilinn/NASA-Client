@@ -11,8 +11,8 @@ import SnapKit
 class MarsEmptyView: UIView {
     
     private let containerView = UIView()
-    private let title = UILabel()
     private let imageView = UIImageView()
+    private let title = UILabel()
     
     override init(frame: CGRect) {
         super.init(frame: frame)

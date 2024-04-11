@@ -19,7 +19,7 @@ class BottomPopupViewController: UIViewController {
     weak var delegate: SetupFiltersDelegate?
     private var selectedFilter = "All"
     
-    var data: [String] //["All", "Элемент 1", "Элемент 2", "Элемент 3"]
+    var data: [String]
     var nameOfTheView: String
     
     init(data: [String], nameOfTheView: String) {
@@ -46,7 +46,6 @@ class BottomPopupViewController: UIViewController {
         contentView.backgroundColor = .backgroundOne
         contentView.layer.cornerRadius = 48
         
-//        nameLabel.text = "Name" //UILabel(text: "Name", fontType: .title2)
         nameLabel.font = CustomFont.title2
         
         doneButton.setImage(.done, for: .normal)
@@ -73,7 +72,6 @@ class BottomPopupViewController: UIViewController {
         self.onClose?()
         guard let name = nameLabel.text?.lowercased() else { return }
         delegate?.updateSelectedFilter(filterName: name, filterComponent: selectedFilter)
-        print("Вибраний фільтр: \(name). Вибране значення: \(selectedFilter)")
     }
     
     private func setupConstraints() {
@@ -114,7 +112,7 @@ class BottomPopupViewController: UIViewController {
 extension BottomPopupViewController: UIPickerViewDataSource, UIPickerViewDelegate {
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
+        1
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
@@ -126,20 +124,7 @@ extension BottomPopupViewController: UIPickerViewDataSource, UIPickerViewDelegat
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        
-//        delegate?.updateSelectedFilter(filterName: nameLabel.text ?? "", filterComponent: data[component])
-//            print("Выбранное значение: \(data[component])")
         print(row)
-        if row != nil {
-            selectedFilter = data[row]
-        } else {
-            selectedFilter = data[0]
-        }
+        selectedFilter = data[row]
     }
-    
 }
-
-
-//#Preview {
-//    CameraPopupViewController()
-//}

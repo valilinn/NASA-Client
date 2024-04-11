@@ -48,11 +48,7 @@ class HistoryViewController: UIViewController {
     }
     
     private func setView() {
-        if filters.isEmpty {
-            view = HistoryEmptyView()
-        } else {
-            view = historyView
-        }
+        view = filters.isEmpty ? HistoryEmptyView() : historyView
     }
     
     private func setNavBar() {
@@ -101,7 +97,6 @@ extension HistoryViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
         filters.isEmpty ? 0 : filters.count
     }
     
@@ -111,8 +106,6 @@ extension HistoryViewController: UITableViewDelegate, UITableViewDataSource {
         if let dateFormatted = CustomDateFormatter.formatToDateForView(filters[indexPath.row].date) {
             cell.configure(rover: filters[indexPath.row].rover, camera: filters[indexPath.row].camera, date: dateFormatted)
         }
-        
-//        cell.configure(rover: filters[indexPath.row].rover, camera: filters[indexPath.row].camera, date: filters[indexPath.row].date)
 
         return cell
     }
@@ -122,13 +115,11 @@ extension HistoryViewController: UITableViewDelegate, UITableViewDataSource {
         
         AlertHelper.showUseFilterAlert(in: self) { [weak self] in
             guard let filter = self?.filters[indexPath.row] else { return }
-            print("Сам цей збережений фільтр \(filter.date) \(filter.rover) \(filter.camera)")
             self?.delegate?.useSavedFilter(rover: filter.rover, camera: filter.camera, date: filter.date)
             
             if let navigationController = self?.navigationController {
                 navigationController.popViewController(animated: true)
             }
-            print("Use")
         } onDelete: { [weak self] in
             guard let filterToDelete = self?.filters[indexPath.row] else { return }
             try! self?.realm.write{
@@ -136,13 +127,8 @@ extension HistoryViewController: UITableViewDelegate, UITableViewDataSource {
                 self?.updateSavedFilters()
                 self?.setView()
             }
-            print("Delete")
         }
-        
-        
     }
-    
-    
 }
 
 

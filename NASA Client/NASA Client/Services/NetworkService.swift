@@ -6,9 +6,6 @@
 //
 
 import Foundation
-//https://api.nasa.gov/mars-photos/api/v1/rovers/?api_key=DEMO_KEY
-//https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?earth_date=2015-6-3&api_key=DEMO_KEY
-//https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?earth_date=2015-6-3&api_key=URR7fWdZm1Um6SCIf7KS0qEcA9RH7GmLu8eglWK8
 
 final class NetworkService {
     static let shared = NetworkService(); private init() { }
@@ -23,7 +20,6 @@ final class NetworkService {
     
     private enum EndPoint: String {
         case allRovers = "/mars-photos/api/v1/rovers/"
-//        case currentRoverData = "curiosity/photos"
         case currentRoverData = "/photos"
     }
     

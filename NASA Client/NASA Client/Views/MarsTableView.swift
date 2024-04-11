@@ -25,8 +25,6 @@ class MarsTableView: UIView {
         tableView = UITableView()
         addSubview(tableView)
         tableView.register(InfoViewCell.self, forCellReuseIdentifier: InfoViewCell.reuseID)
-//        tableView.backgroundColor = .white
-//        tableView.backgroundColor = .cyan
         tableView.isScrollEnabled = false
         tableView.separatorStyle = .none
        
@@ -35,6 +33,5 @@ class MarsTableView: UIView {
             $0.edges.equalTo(safeAreaLayoutGuide.snp.edges)
         }
     }
-    
 }
 

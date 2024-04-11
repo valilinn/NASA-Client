@@ -51,7 +51,6 @@ class MarsViewController: UIViewController {
         navigationController?.isNavigationBarHidden = true
         marsView.tableView.tableView.delegate = self
         marsView.tableView.tableView.dataSource = self
-        marsView.tableView.tableView.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 10, right: 0)
         setupDateView()
         setupButtons()
         setupOverlay()
@@ -83,7 +82,6 @@ class MarsViewController: UIViewController {
         }
     }
 
-    
     private func setupDateView() {
         marsView.dateLabel.text = CustomDateFormatter.formatToDateForView(filters.date)
     }
@@ -120,11 +118,10 @@ class MarsViewController: UIViewController {
                 DispatchQueue.main.async { [weak self] in
                     self?.roverPhotosDataArray.removeAll()
                     self?.roverPhotosDataArray.append(contentsOf: roverPhotosData)
-                    print("Основні дані отримано всі\(self?.roverPhotosDataArray.count)")
+                    print("Data count is:\(String(describing: self?.roverPhotosDataArray.count))")
                     completion()
                 }
             case .failure(let error):
-                print("Помилка отримання основних даних - \(error)")
                 print(error.localizedDescription)
             }
         }
@@ -133,7 +130,6 @@ class MarsViewController: UIViewController {
     private func toFilterMarsPhotos() {
         DispatchQueue.main.async { [weak self] in
             guard let allPhotos = self?.roverPhotosDataArray else { return }
-            print("Фільтри перед фільтрацією \(self?.filters.date) \(self?.filters.rover) \(self?.filters.camera)")
             self?.filteredMarsPhotos = self?.filters.filterMarsPhotos(dataToFilter: allPhotos) ?? []
         }
         updateTableView()
@@ -217,7 +213,6 @@ class MarsViewController: UIViewController {
     @objc
     func saveFilterButtonTapped() {
         let filtersToSave = createInstanceToSaveFilters()
-        
         AlertHelper.showSaveFilterAlert(in: self) { [weak self] in
             try! self?.realm.write {
                 self?.realm.add(filtersToSave)
@@ -228,7 +223,6 @@ class MarsViewController: UIViewController {
                 }
             }
         }
-        
     }
     
     private func createInstanceToSaveFilters() -> Filters {
@@ -262,7 +256,6 @@ class MarsViewController: UIViewController {
             self?.marsView.tableView.tableView.reloadData()
         }
     }
-    
 }
 
 extension MarsViewController: UITableViewDelegate, UITableViewDataSource {
@@ -325,7 +318,7 @@ extension MarsViewController: SetupFiltersDelegate {
             filters.camera = filterComponent
             toFilterMarsPhotos()
         default:
-            print("Ні один фільтр не був змінений (делегат)")
+            print("No filters have been selectes")
         }
     }
 }
@@ -349,7 +342,6 @@ extension MarsViewController: RealmSavedFiltersDelegate {
         filters.date = date
         filters.rover = rover
         filters.camera = camera
-        print("Отримала із збережених фільтрів \(filters.date) \(filters.rover) \(filters.camera)")
         updateFiltersView()
         if let rover = roversData {
             filteredMarsPhotos.removeAll()
@@ -361,6 +353,3 @@ extension MarsViewController: RealmSavedFiltersDelegate {
     }
 }
 
-//#Preview {
-//    MarsViewController()
-//}
