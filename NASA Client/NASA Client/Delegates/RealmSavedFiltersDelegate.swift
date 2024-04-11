@@ -8,5 +8,5 @@
 import Foundation
 
 protocol RealmSavedFiltersDelegate: AnyObject {
-    func useSavedFilters(rover: String, camera: String, date: String)
+    func useSavedFilter(rover: String, camera: String, date: String)
 }

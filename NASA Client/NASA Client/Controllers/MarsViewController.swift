@@ -23,7 +23,7 @@ class MarsViewController: UIViewController {
     private var roversData: MarsRover? {
         didSet {
             if let rover = roversData {
-                fetchMarsRoverPhotos(rovers: rover, date: currentDate)
+                fetchMarsRoverPhotos(rovers: rover, date: filters.date) { }
             }
         }
     }
@@ -31,32 +31,28 @@ class MarsViewController: UIViewController {
     private var roverPhotosDataArray = [MarsRoverPhotos.Photo]() {
         didSet {
             marsView.tableViewHeightConstraint?.update(offset: CGFloat(roverPhotosDataArray.count) * cellHeight)
-            DispatchQueue.main.async { [weak self] in
-                self?.marsView.tableView.tableView.reloadData()
-            }
+            updateTableView()
         }
     }
     private var filteredMarsPhotos = [MarsRoverPhotos.Photo]() {
         didSet {
             marsView.tableViewHeightConstraint?.update(offset: CGFloat(filteredMarsPhotos.count) * cellHeight)
-            DispatchQueue.main.async { [weak self] in
-                self?.marsView.tableView.tableView.reloadData()
-            }
+            updateTableView()
         }
     }
     
-    private var currentDate = CustomDateFormatter.getCurrentDate() {
-        didSet {
-            if let rover = roversData {
-                filteredMarsPhotos.removeAll()
-                fetchMarsRoverPhotos(rovers: rover, date: currentDate)
-                DispatchQueue.main.async { [weak self] in
-                    self?.updateFilterLabelsToDefault()
-                    self?.marsView.tableView.tableView.reloadData()
-                }
-            }
-        }
-    }
+//    private var currentDate = CustomDateFormatter.getCurrentDate() {
+//        didSet {
+//            if let rover = roversData {
+//                filteredMarsPhotos.removeAll()
+//                fetchMarsRoverPhotos(rovers: rover, date: currentDate)
+//                DispatchQueue.main.async { [weak self] in
+//                    self?.updateFilterLabelsToDefault()
+//                    self?.marsView.tableView.tableView.reloadData()
+//                }
+//            }
+//        }
+//    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -88,7 +84,7 @@ class MarsViewController: UIViewController {
     }
     
     private func setupDateView() {
-        marsView.dateLabel.text = CustomDateFormatter.formatToDateForView(currentDate)
+        marsView.dateLabel.text = CustomDateFormatter.formatToDateForView(filters.date)
     }
     
 //    private func showPreloader() {
@@ -116,7 +112,7 @@ class MarsViewController: UIViewController {
         }
     }
     
-    private func fetchMarsRoverPhotos(rovers: MarsRover, date: String) {
+    private func fetchMarsRoverPhotos(rovers: MarsRover, date: String, completion: @escaping () -> ()) {
         NetworkService.shared.getMarsRoverPhotos(date: date, roversAll: rovers) { result in
             switch result {
             case .success(let roverPhotosData):
@@ -124,6 +120,7 @@ class MarsViewController: UIViewController {
                     self?.roverPhotosDataArray.removeAll()
                     self?.roverPhotosDataArray.append(contentsOf: roverPhotosData)
                     print("Основні дані отримано всі\(self?.roverPhotosDataArray.count)")
+                    completion()
                 }
             case .failure(let error):
                 print("Помилка отримання основних даних - \(error)")
@@ -135,9 +132,10 @@ class MarsViewController: UIViewController {
     private func toFilterMarsPhotos() {
         DispatchQueue.main.async { [weak self] in
             guard let allPhotos = self?.roverPhotosDataArray else { return }
+            print("Фільтри перед фільтрацією \(self?.filters.date) \(self?.filters.rover) \(self?.filters.camera)")
             self?.filteredMarsPhotos = self?.filters.filterMarsPhotos(dataToFilter: allPhotos) ?? []
-            self?.marsView.tableView.tableView.reloadData()
         }
+        updateTableView()
     }
     
     
@@ -251,6 +249,22 @@ class MarsViewController: UIViewController {
         }
     }
     
+    private func updateFiltersView() {
+        DispatchQueue.main.async { [weak self] in
+            guard let date = self?.filters.date else { return }
+            let dateForTheView = CustomDateFormatter.formatToDateForView(date)
+            self?.marsView.dateLabel.text = dateForTheView
+            self?.marsView.roverFilterButton.setTitle(self?.filters.rover, for: .normal)
+            self?.marsView.cameraFilterButton.setTitle(self?.filters.camera, for: .normal)
+        }
+    }
+    
+    private func updateTableView() {
+        DispatchQueue.main.async { [weak self] in
+            self?.marsView.tableView.tableView.reloadData()
+        }
+    }
+    
 }
 
 extension MarsViewController: UITableViewDelegate, UITableViewDataSource {
@@ -318,39 +332,31 @@ extension MarsViewController: SetupFiltersDelegate {
 
 extension MarsViewController: ChangeDateDelegate {
     func updateDate(selectedDate: String) {
-        currentDate = selectedDate
-        filters.date = currentDate
-        let dateForTheView = CustomDateFormatter.formatToDateForView(selectedDate)
-        DispatchQueue.main.async { [weak self] in
-            self?.marsView.dateLabel.text = dateForTheView
+        filters.date = selectedDate
+        updateFilterLabelsToDefault()
+        updateFiltersView()
+        if let rover = roversData {
+            filteredMarsPhotos.removeAll()
+            fetchMarsRoverPhotos(rovers: rover, date: filters.date) { [weak self] in
+                self?.updateTableView()
+            }
         }
     }
 }
 
 extension MarsViewController: RealmSavedFiltersDelegate {
-    func useSavedFilters(rover: String, camera: String, date: String) {
-        guard let roversData = roversData else { return }
-        print("Маю стільки роверів \(roversData)")
-        print("Маю таку дату \(date)")
-        fetchMarsRoverPhotos(rovers: roversData, date: date)
-        print("Отримані дані - \(self.roverPhotosDataArray.count)")
-        
-        //оновити лейбли??
-            self.filters.rover = rover
-            self.filters.camera = camera
-            self.filters.date = date
-        //змінити бо так не може бути
-        currentDate = date
-        print("Змінюю дані фільтрів у теперішньому екземплярі")
-            self.toFilterMarsPhotos()
-        print("Фільтрую дані")
-        DispatchQueue.main.async { [weak self] in
-            guard let date = self?.filters.date else { return }
-            let dateForTheView = CustomDateFormatter.formatToDateForView(date)
-            self?.marsView.dateLabel.text = dateForTheView
-            self?.marsView.roverFilterButton.setTitle(self?.filters.rover, for: .normal)
-            self?.marsView.cameraFilterButton.setTitle(self?.filters.camera, for: .normal)
-            self?.marsView.tableView.tableView.reloadData()
+    func useSavedFilter(rover: String, camera: String, date: String) {
+        filters.date = date
+        filters.rover = rover
+        filters.camera = camera
+        print("Отримала із збережених фільтрів \(filters.date) \(filters.rover) \(filters.camera)")
+        updateFiltersView()
+        if let rover = roversData {
+            filteredMarsPhotos.removeAll()
+            fetchMarsRoverPhotos(rovers: rover, date: filters.date) { [weak self] in
+                self?.toFilterMarsPhotos()
+                self?.updateTableView()
+            }
         }
     }
 }

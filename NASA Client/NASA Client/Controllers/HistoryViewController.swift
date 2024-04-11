@@ -118,7 +118,8 @@ extension HistoryViewController: UITableViewDelegate, UITableViewDataSource {
         
         AlertHelper.showUseFilterAlert(in: self) { [weak self] in
             guard let filter = self?.filters[indexPath.row] else { return }
-            self?.delegate?.useSavedFilters(rover: filter.rover, camera: filter.camera, date: filter.date)
+            print("Сам цей збережений фільтр \(filter.date) \(filter.rover) \(filter.camera)")
+            self?.delegate?.useSavedFilter(rover: filter.rover, camera: filter.camera, date: filter.date)
             
             if let navigationController = self?.navigationController {
                 navigationController.popViewController(animated: true)
