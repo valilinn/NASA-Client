@@ -39,7 +39,6 @@ class HistoryViewController: UIViewController {
         let filtersResults = realm.objects(Filters.self)
         filters = Array(filtersResults)
         historyView.tableView.reloadData()
-        print("I have filters \(filters)")
     }
     
     private func updateSavedFilters() {

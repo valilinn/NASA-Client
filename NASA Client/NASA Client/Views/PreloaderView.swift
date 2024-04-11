@@ -13,7 +13,7 @@ import Lottie
 class PreloaderView: UIView {
     private let containerView = UIView()
     private let imageView = UIImageView()
-    private var animationView: LottieAnimationView?
+    var animationView: LottieAnimationView?
     
     override init(frame: CGRect) {
         super.init(frame: frame)

@@ -216,7 +216,6 @@ class MarsViewController: UIViewController {
         AlertHelper.showSaveFilterAlert(in: self) { [weak self] in
             try! self?.realm.write {
                 self?.realm.add(filtersToSave)
-                print("TO CHECK REALM \(filtersToSave)")
                 let config = Realm.Configuration.defaultConfiguration
                 if let url = config.fileURL {
                     print(url.absoluteString)

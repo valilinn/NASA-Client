@@ -19,13 +19,13 @@ class Filters: Object, ObjectKeyIdentifiable {
         var filteredArray = dataToFilter
            
            if rover != defaultValue && camera != defaultValue {
-               print("HAVE FILTERS for both rover and camera")
+               print("HAVE Filters for both rover and camera")
                filteredArray = dataToFilter.filter { $0.rover.name == self.rover && $0.camera.fullName == self.camera }
            } else if rover != defaultValue {
-               print("HAVE FILTERS for rover")
+               print("Filters for rover")
                filteredArray = dataToFilter.filter { $0.rover.name == self.rover }
            } else if camera != defaultValue {
-               print("HAVE FILTERS for camera")
+               print("Filters for camera")
                filteredArray = dataToFilter.filter { $0.camera.fullName == self.camera }
            } else {
                print("NO FILTERS")
