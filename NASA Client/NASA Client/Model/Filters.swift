@@ -10,7 +10,7 @@ import RealmSwift
 
 class Filters: Object, ObjectKeyIdentifiable {
     @Persisted(primaryKey: true) var _id: ObjectId
-    @Persisted var date = ""
+    @Persisted var date = CustomDateFormatter.getCurrentDate()
     @Persisted var rover = "All"
     @Persisted var camera = "All"
     private let defaultValue = "All"
@@ -33,5 +33,10 @@ class Filters: Object, ObjectKeyIdentifiable {
            
         print("FILTERED ARRAY----------------------------------------------------------------------------------------\(filteredArray.map {$0.earthDate})")
            return filteredArray
+    }
+    
+    func changeFiltersToDefault() {
+        rover = defaultValue
+        camera = defaultValue
     }
 }

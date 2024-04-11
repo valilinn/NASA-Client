@@ -14,18 +14,18 @@ class HistoryViewController: UIViewController {
     private let historyView = HistoryView()
     private let backButton = UIButton()
     private let cellHeight: CGFloat = 150
-    private var filters = [Filters]() 
+    private var filters = [Filters]()
     weak var delegate: RealmSavedFiltersDelegate?
     let realm = try! Realm()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view = historyView
         view.backgroundColor = .backgroundOne
         historyView.tableView.delegate = self
         historyView.tableView.dataSource = self
         setNavBar()
         getSavedFilters()
+        setView()
     }
     
     @objc
@@ -45,6 +45,14 @@ class HistoryViewController: UIViewController {
     private func updateSavedFilters() {
         getSavedFilters()
         historyView.tableView.reloadData()
+    }
+    
+    private func setView() {
+        if filters.isEmpty {
+            view = HistoryEmptyView()
+        } else {
+            view = historyView
+        }
     }
     
     private func setNavBar() {
@@ -121,6 +129,7 @@ extension HistoryViewController: UITableViewDelegate, UITableViewDataSource {
             try! self?.realm.write{
                 self?.realm.delete(filterToDelete)
                 self?.updateSavedFilters()
+                self?.setView()
             }
             print("Delete")
         }

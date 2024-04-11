@@ -112,6 +112,6 @@ class HistoryViewCell: UITableViewCell {
     }
 }
 
-#Preview {
-    HistoryViewCell()
-}
+//#Preview {
+//    HistoryViewCell()
+//}
