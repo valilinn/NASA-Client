@@ -31,14 +31,14 @@ class MarsViewController: UIViewController {
     private var roverPhotosDataArray = [MarsRoverPhotos.Photo]() {
         didSet {
             marsView.tableViewHeightConstraint?.update(offset: CGFloat(roverPhotosDataArray.count) * cellHeight)
-//            setView()
+            setView()
             updateTableView()
         }
     }
     private var filteredMarsPhotos = [MarsRoverPhotos.Photo]() {
         didSet {
             marsView.tableViewHeightConstraint?.update(offset: CGFloat(filteredMarsPhotos.count) * cellHeight)
-//            setView()
+            setView()
             updateTableView()
         }
     }
@@ -55,9 +55,9 @@ class MarsViewController: UIViewController {
         setupDateView()
         setupButtons()
         setupOverlay()
-//        showPreloader()
+        showPreloader()
         fetchRoverNames()
-//        setView()
+        setView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -73,32 +73,31 @@ class MarsViewController: UIViewController {
                                      height: 70)
     }
     
-//    private func setView() {
-//        if filteredMarsPhotos.isEmpty {
-//            if roverPhotosDataArray.isEmpty {
-//                marsView.tableView.isHidden = true
-//                marsView.marsEmptyView.isHidden = false
-//            }
-//        } else {
-//            marsView.tableView.isHidden = false
-//            marsView.marsEmptyView.isHidden = true
-//        }
-//    }
+    private func setView() {
+        if filteredMarsPhotos.isEmpty && roverPhotosDataArray.isEmpty {
+            marsView.tableView.isHidden = true
+            marsView.marsEmptyView.isHidden = false
+        } else {
+            marsView.tableView.isHidden = false
+            marsView.marsEmptyView.isHidden = true
+        }
+    }
+
     
     private func setupDateView() {
         marsView.dateLabel.text = CustomDateFormatter.formatToDateForView(filters.date)
     }
     
-//    private func showPreloader() {
-//        let preloaderVC = PreloaderViewController()
-//        preloaderVC.modalPresentationStyle = .overFullScreen
-//        preloaderVC.modalTransitionStyle = .crossDissolve
-//        present(preloaderVC, animated: true, completion: nil)
-//    }
+    private func showPreloader() {
+        let preloaderVC = PreloaderViewController()
+        preloaderVC.modalPresentationStyle = .overFullScreen
+        preloaderVC.modalTransitionStyle = .crossDissolve
+        present(preloaderVC, animated: true, completion: nil)
+    }
     
-//    private func hidePreloader() {
-//        dismiss(animated: true, completion: nil)
-//    }
+    private func hidePreloader() {
+        dismiss(animated: true, completion: nil)
+    }
     
     private func fetchRoverNames() {
         NetworkService.shared.getMarsRovers { result in
@@ -106,7 +105,7 @@ class MarsViewController: UIViewController {
             case .success(let roversData):
                 DispatchQueue.main.async { [weak self] in
                     self?.roversData = roversData
-//                    self?.hidePreloader()
+                    self?.hidePreloader()
                 }
             case .failure(let error):
                 print(error.localizedDescription)
@@ -221,9 +220,6 @@ class MarsViewController: UIViewController {
         
         AlertHelper.showSaveFilterAlert(in: self) { [weak self] in
             try! self?.realm.write {
-//                guard let date = self?.currentDate else { return }
-//                self?.filters.date = date
-//                guard let filters = self?.filters else { return }
                 self?.realm.add(filtersToSave)
                 print("TO CHECK REALM \(filtersToSave)")
                 let config = Realm.Configuration.defaultConfiguration
@@ -285,12 +281,10 @@ extension MarsViewController: UITableViewDelegate, UITableViewDataSource {
         
         if filteredMarsPhotos.isEmpty {
             photo = roverPhotosDataArray[indexPath.row]
-//            marsView.tableView.isHidden = false
-//            marsView.marsEmptyView.isHidden = true
+
         } else {
             photo = filteredMarsPhotos[indexPath.row]
-//            marsView.tableView.isHidden = false
-//            marsView.marsEmptyView.isHidden = true
+
         }
         
         if let dateFormatted = CustomDateFormatter.formatToDateForView(photo.earthDate) {

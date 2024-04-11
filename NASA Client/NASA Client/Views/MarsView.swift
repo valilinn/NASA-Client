@@ -21,7 +21,7 @@ class MarsView: UIView {
     let cameraFilterButton = UIButton(title: "All", image: .cameraAll)
     let plusButton = UIButton(image: .plus)
     
-//    let marsEmptyView = MarsEmptyView()
+    let marsEmptyView = MarsEmptyView()
     let tableView = MarsTableView()
     
     var dateLabel = UILabel()
@@ -126,11 +126,11 @@ class MarsView: UIView {
             tableViewHeightConstraint = $0.height.equalTo(1).constraint
         }
         
-//        containerView.addSubview(marsEmptyView)
-//        marsEmptyView.snp.makeConstraints {
-//            $0.top.equalTo(navigationView.snp.bottom).offset(250)
-//            $0.centerX.equalTo(containerView.snp.centerX)
-//        }
+        containerView.addSubview(marsEmptyView)
+        marsEmptyView.snp.makeConstraints {
+            $0.top.equalTo(navigationView.snp.bottom).offset(250)
+            $0.centerX.equalTo(containerView.snp.centerX)
+        }
         
         
     }

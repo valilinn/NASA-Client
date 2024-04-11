@@ -26,8 +26,8 @@ class MarsEmptyView: UIView {
     }
     
     private func setViews() {
-        title.text = "There are no images \n from this day with these filters."
-        title.numberOfLines = 2
+        title.text = "There are no images from this day."
+        title.numberOfLines = 1
         title.font = CustomFont.body
         title.textColor = .layerTwo
         title.textAlignment = .center
