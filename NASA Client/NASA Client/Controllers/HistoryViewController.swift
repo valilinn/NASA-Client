@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import SnapKit
 import RealmSwift
 
 class HistoryViewController: UIViewController {

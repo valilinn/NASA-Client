@@ -5,8 +5,7 @@
 //  Created by Валентина Лінчук on 08/04/2024.
 //
 
-import Foundation
-import SnapKit
+import UIKit
 
 class MarsTableView: UIView {
     

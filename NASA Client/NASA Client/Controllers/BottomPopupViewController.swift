@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import SnapKit
 
 class BottomPopupViewController: UIViewController {
     
@@ -76,36 +75,43 @@ class BottomPopupViewController: UIViewController {
     
     private func setupConstraints() {
         view.addSubview(contentView)
-        contentView.snp.makeConstraints {
-            $0.leading.equalToSuperview()
-            $0.trailing.equalToSuperview()
-            $0.bottom.equalToSuperview().offset(26)
-            $0.height.equalTo(316)
-        }
+        contentView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            contentView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            contentView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            contentView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 26),
+            contentView.heightAnchor.constraint(equalToConstant: 316)
+        ])
         
         contentView.addSubview(pickerView)
-        pickerView.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(43)
-            $0.leading.trailing.bottom.equalToSuperview()
-        }
+        pickerView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            pickerView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 43),
+            pickerView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            pickerView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            pickerView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
+        ])
         
         contentView.addSubview(closeButton)
-        closeButton.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(16)
-            $0.leading.equalToSuperview().offset(16)
-        }
+        closeButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            closeButton.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
+            closeButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16)
+        ])
         
         contentView.addSubview(nameLabel)
-        nameLabel.snp.makeConstraints {
-            $0.centerX.equalToSuperview()
-            $0.centerY.equalTo(closeButton.snp.centerY)
-        }
+        nameLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            nameLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            nameLabel.centerYAnchor.constraint(equalTo: closeButton.centerYAnchor)
+        ])
         
         contentView.addSubview(doneButton)
-        doneButton.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(16)
-            $0.trailing.equalToSuperview().offset(-16)
-        }
+        doneButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            doneButton.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
+            doneButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16)
+        ])
     }
 }
 

@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import SnapKit
 
 class DatePopupViewController: UIViewController {
     
@@ -63,35 +62,42 @@ class DatePopupViewController: UIViewController {
     
     private func setupConstraints() {
         view.addSubview(contentView)
-        contentView.snp.makeConstraints {
-            $0.centerY.equalToSuperview()
-            $0.leading.equalToSuperview().offset(20)
-            $0.trailing.equalToSuperview().offset(-20)
-            $0.height.equalTo(312)
-        }
+        contentView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            contentView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            contentView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            contentView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            contentView.heightAnchor.constraint(equalToConstant: 312)
+        ])
         
         contentView.addSubview(datePicker)
-        datePicker.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(43)
-            $0.leading.trailing.bottom.equalToSuperview()
-        }
+        datePicker.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            datePicker.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 43),
+            datePicker.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            datePicker.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            datePicker.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
+        ])
         
         contentView.addSubview(closeButton)
-        closeButton.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(16)
-            $0.leading.equalToSuperview().offset(16)
-        }
+        closeButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            closeButton.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
+            closeButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16)
+        ])
         
         contentView.addSubview(dateLabel)
-        dateLabel.snp.makeConstraints {
-            $0.centerX.equalToSuperview()
-            $0.centerY.equalTo(closeButton.snp.centerY)
-        }
+        dateLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            dateLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            dateLabel.centerYAnchor.constraint(equalTo: closeButton.centerYAnchor)
+        ])
         
         contentView.addSubview(doneButton)
-        doneButton.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(16)
-            $0.trailing.equalToSuperview().offset(-16)
-        }
+        doneButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            doneButton.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
+            doneButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16)
+        ])
     }
 }
