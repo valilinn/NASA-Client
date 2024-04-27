@@ -30,14 +30,14 @@ class MarsViewController: UIViewController {
 
     private var roverPhotosDataArray = [MarsRoverPhotos.Photo]() {
         didSet {
-            marsView.tableViewHeightConstraint?.update(offset: CGFloat(roverPhotosDataArray.count) * cellHeight)
+            marsView.tableViewHeightConstraint?.constant = CGFloat(roverPhotosDataArray.count) * cellHeight
             setView()
             updateTableView()
         }
     }
     private var filteredMarsPhotos = [MarsRoverPhotos.Photo]() {
         didSet {
-            marsView.tableViewHeightConstraint?.update(offset: CGFloat(filteredMarsPhotos.count) * cellHeight)
+            marsView.tableViewHeightConstraint?.constant = CGFloat(filteredMarsPhotos.count) * cellHeight
             setView()
             updateTableView()
         }

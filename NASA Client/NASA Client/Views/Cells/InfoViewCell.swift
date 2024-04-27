@@ -66,34 +66,34 @@ class InfoViewCell: UITableViewCell {
     
     private func setConstraints() {
         addSubview(containerView)
-        
-        containerView.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(8)
-            $0.bottom.equalToSuperview().offset(-8)
-            $0.trailing.equalToSuperview().offset(-16)
-            $0.leading.equalToSuperview().offset(16)
-        }
+        containerView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            containerView.topAnchor.constraint(equalTo: topAnchor, constant: 8),
+            containerView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8),
+            containerView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+            containerView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16)
+        ])
         
         containerView.addSubview(marsImageView)
+        marsImageView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            marsImageView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -8),
+            marsImageView.centerYAnchor.constraint(equalTo: containerView.centerYAnchor),
+            marsImageView.widthAnchor.constraint(equalToConstant: 130),
+            marsImageView.heightAnchor.constraint(equalTo: marsImageView.widthAnchor)
+        ])
         
-        marsImageView.snp.makeConstraints {
-            $0.trailing.equalTo(containerView.snp.trailing).offset(-8)
-            $0.centerY.equalTo(containerView.snp.centerY)
-            $0.width.height.equalTo(130)
-        }
-    
         let stack = UIStackView(arrangedSubviews: [roverLabel, cameraLabel, dateLabel])
         stack.axis = .vertical
         stack.alignment = .leading
         stack.spacing = 10
-        
+        stack.translatesAutoresizingMaskIntoConstraints = false
         containerView.addSubview(stack)
-        
-        stack.snp.makeConstraints {
-            $0.centerY.equalTo(marsImageView.snp.centerY)
-            $0.leading.equalTo(containerView.snp.leading).offset(16)
-            $0.trailing.equalTo(marsImageView.snp.leading).offset(-8)
-        }
+        NSLayoutConstraint.activate([
+            stack.centerYAnchor.constraint(equalTo: marsImageView.centerYAnchor),
+            stack.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 16),
+            stack.trailingAnchor.constraint(equalTo: marsImageView.leadingAnchor, constant: -8)
+        ])
     }
 }
 

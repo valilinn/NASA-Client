@@ -39,20 +39,29 @@ class DetailImageView: UIView {
     
     private func setConstraints() {
         addSubview(containerView)
-        containerView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
-        }
+        containerView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            containerView.topAnchor.constraint(equalTo: topAnchor),
+            containerView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            containerView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            containerView.bottomAnchor.constraint(equalTo: bottomAnchor)
+        ])
         
         containerView.addSubview(imageView)
-        imageView.snp.makeConstraints {
-            $0.edges.equalTo(containerView.snp.edges)
-        }
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            imageView.topAnchor.constraint(equalTo: containerView.topAnchor),
+            imageView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
+            imageView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
+            imageView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor)
+        ])
         
         containerView.addSubview(closeButton)
-        closeButton.snp.makeConstraints {
-            $0.top.equalTo(containerView.snp.top).offset(70)
-            $0.leading.equalTo(containerView.snp.leading).offset(16)
-        }
+        closeButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            closeButton.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 70),
+            closeButton.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 16)
+        ])
     }
 }
 

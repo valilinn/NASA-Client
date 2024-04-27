@@ -70,38 +70,39 @@ class HistoryViewCell: UITableViewCell {
     
     private func setConstraints() {
         addSubview(containerView)
-        
-        containerView.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(8)
-            $0.bottom.equalToSuperview().offset(-8)
-            $0.trailing.equalToSuperview().offset(-16)
-            $0.leading.equalToSuperview().offset(16)
-        }
+        containerView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            containerView.topAnchor.constraint(equalTo: topAnchor, constant: 8),
+            containerView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8),
+            containerView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+            containerView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16)
+        ])
         
         containerView.addSubview(filtersLabel)
-        filtersLabel.snp.makeConstraints {
-            $0.top.equalTo(containerView.snp.top).offset(12)
-            $0.trailing.equalTo(containerView.snp.trailing).offset(-8)
-        }
+        filtersLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            filtersLabel.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 12),
+            filtersLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -8)
+        ])
         
         containerView.addSubview(lineImageView)
-        lineImageView.snp.makeConstraints {
-            $0.leading.equalTo(containerView.snp.leading).offset(8)
-            $0.centerY.equalTo(filtersLabel.snp.centerY)
-            $0.trailing.equalTo(filtersLabel.snp.leading)
-        }
+        lineImageView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            lineImageView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 8),
+            lineImageView.centerYAnchor.constraint(equalTo: filtersLabel.centerYAnchor),
+            lineImageView.trailingAnchor.constraint(equalTo: filtersLabel.leadingAnchor)
+        ])
         
         let stack = UIStackView(arrangedSubviews: [roverLabel, cameraLabel, dateLabel])
         stack.axis = .vertical
         stack.alignment = .leading
         stack.spacing = 10
-        
+        stack.translatesAutoresizingMaskIntoConstraints = false
         containerView.addSubview(stack)
-        stack.snp.makeConstraints {
-            $0.top.equalTo(lineImageView.snp.bottom).offset(16)
-            $0.leading.equalTo(containerView.snp.leading).offset(16)
-            $0.trailing.equalTo(containerView.snp.trailing).offset(-16)
-        }
-        
+        NSLayoutConstraint.activate([
+            stack.topAnchor.constraint(equalTo: lineImageView.bottomAnchor, constant: 16),
+            stack.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 16),
+            stack.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -16)
+        ])
     }
 }

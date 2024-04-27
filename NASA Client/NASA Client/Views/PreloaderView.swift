@@ -42,22 +42,30 @@ class PreloaderView: UIView {
     
     private func setConstraints() {
         addSubview(containerView)
-        containerView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
-        }
+        containerView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            containerView.topAnchor.constraint(equalTo: topAnchor),
+            containerView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            containerView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            containerView.bottomAnchor.constraint(equalTo: bottomAnchor)
+        ])
         
         containerView.addSubview(imageView)
-        imageView.snp.makeConstraints {
-            $0.centerX.equalTo(containerView.snp.centerX)
-            $0.centerY.equalTo(containerView.snp.centerY)
-        }
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            imageView.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
+            imageView.centerYAnchor.constraint(equalTo: containerView.centerYAnchor)
+        ])
         
-        containerView.addSubview(animationView!)
-        animationView!.snp.makeConstraints {
-            $0.centerX.equalTo(containerView.snp.centerX)
-            $0.bottom.equalTo(containerView.snp.bottom).offset(-50)
-            $0.height.equalTo(102)
-            $0.width.equalTo(333)
+        if let animationView = animationView {
+            containerView.addSubview(animationView)
+            animationView.translatesAutoresizingMaskIntoConstraints = false
+            NSLayoutConstraint.activate([
+                animationView.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
+                animationView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -50),
+                animationView.heightAnchor.constraint(equalToConstant: 102),
+                animationView.widthAnchor.constraint(equalToConstant: 333)
+            ])
         }
     }
 }

@@ -33,7 +33,7 @@ struct CustomDateFormatter {
         dateFormatter.timeZone = TimeZone.current
         
         guard let date = dateFormatter.date(from: dateString) else {
-            return nil //
+            return nil 
         }
         
         dateFormatter.dateFormat = "MMMM d, yyyy"

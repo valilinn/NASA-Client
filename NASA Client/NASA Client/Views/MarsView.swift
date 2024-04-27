@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import SnapKit
 
 class MarsView: UIView {
     
@@ -24,7 +23,7 @@ class MarsView: UIView {
     let marsEmptyView = MarsEmptyView()
     let tableView = MarsTableView()
    
-    var tableViewHeightConstraint: Constraint?
+    var tableViewHeightConstraint: NSLayoutConstraint?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -53,80 +52,95 @@ class MarsView: UIView {
     }
     
     private func setConstraints() {
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
         addSubview(scrollView)
-        scrollView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
-        }
+        NSLayoutConstraint.activate([
+            scrollView.topAnchor.constraint(equalTo: topAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: bottomAnchor)
+        ])
         
+        containerView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.addSubview(containerView)
-        containerView.snp.makeConstraints {
-            $0.top.equalTo(scrollView.snp.top).offset(-60)
-            $0.leading.trailing.bottom.equalToSuperview()
-            $0.width.equalTo(scrollView)
-        }
+        NSLayoutConstraint.activate([
+            containerView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: -60),
+            containerView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            containerView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            containerView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+            containerView.widthAnchor.constraint(equalTo: scrollView.widthAnchor)
+        ])
         
+        navigationView.translatesAutoresizingMaskIntoConstraints = false
         containerView.addSubview(navigationView)
-        navigationView.snp.makeConstraints {
-            $0.top.equalTo(containerView.snp.top)
-            $0.leading.equalTo(containerView.snp.leading)
-            $0.trailing.equalTo(containerView.snp.trailing)
-            $0.height.equalTo(220)
-        }
+        NSLayoutConstraint.activate([
+            navigationView.topAnchor.constraint(equalTo: containerView.topAnchor),
+            navigationView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
+            navigationView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
+            navigationView.heightAnchor.constraint(equalToConstant: 220)
+        ])
         
+        title.translatesAutoresizingMaskIntoConstraints = false
         navigationView.addSubview(title)
-        title.snp.makeConstraints {
-            $0.top.equalTo(navigationView.snp.top).offset(68)
-            $0.leading.equalTo(navigationView.snp.leading).offset(16)
-            $0.trailing.equalTo(navigationView.snp.trailing).offset(-16)
-        }
+        NSLayoutConstraint.activate([
+            title.topAnchor.constraint(equalTo: navigationView.topAnchor, constant: 68),
+            title.leadingAnchor.constraint(equalTo: navigationView.leadingAnchor, constant: 16),
+            title.trailingAnchor.constraint(equalTo: navigationView.trailingAnchor, constant: -16)
+        ])
         
+        dateLabel.translatesAutoresizingMaskIntoConstraints = false
         navigationView.addSubview(dateLabel)
-        dateLabel.snp.makeConstraints {
-            $0.top.equalTo(title.snp.bottom).offset(6)
-            $0.leading.equalTo(title.snp.leading)
-        }
+        NSLayoutConstraint.activate([
+            dateLabel.topAnchor.constraint(equalTo: title.bottomAnchor, constant: 6),
+            dateLabel.leadingAnchor.constraint(equalTo: title.leadingAnchor)
+        ])
         
         let stackButtons = UIStackView(arrangedSubviews: [roverFilterButton, cameraFilterButton])
+        stackButtons.translatesAutoresizingMaskIntoConstraints = false
         stackButtons.axis = .horizontal
         stackButtons.alignment = .fill
         stackButtons.distribution = .fillEqually
         stackButtons.spacing = 15
-        stackButtons.isUserInteractionEnabled = true
         
         navigationView.addSubview(stackButtons)
-        stackButtons.snp.makeConstraints {
-            $0.top.equalTo(dateLabel.snp.bottom).offset(20)
-            $0.leading.equalTo(dateLabel.snp.leading)
-            $0.trailing.equalTo(navigationView.snp.trailing).offset(-70)
-        }
+        NSLayoutConstraint.activate([
+            stackButtons.topAnchor.constraint(equalTo: dateLabel.bottomAnchor, constant: 20),
+            stackButtons.leadingAnchor.constraint(equalTo: dateLabel.leadingAnchor),
+            stackButtons.trailingAnchor.constraint(equalTo: navigationView.trailingAnchor, constant: -70)
+        ])
         
+        calendarButton.translatesAutoresizingMaskIntoConstraints = false
         navigationView.addSubview(calendarButton)
-        calendarButton.snp.makeConstraints {
-            $0.top.equalTo(title.snp.bottom).offset(-16)
-            $0.trailing.equalTo(navigationView.snp.trailing).offset(-14)
-        }
+        NSLayoutConstraint.activate([
+            calendarButton.topAnchor.constraint(equalTo: title.bottomAnchor, constant: -16),
+            calendarButton.trailingAnchor.constraint(equalTo: navigationView.trailingAnchor, constant: -14)
+        ])
         
+        plusButton.translatesAutoresizingMaskIntoConstraints = false
         navigationView.addSubview(plusButton)
-        plusButton.snp.makeConstraints {
-            $0.centerY.equalTo(stackButtons.snp.centerY)
-            $0.trailing.equalTo(navigationView.snp.trailing).offset(-16)
-            $0.width.equalTo(38)
-        }
+        NSLayoutConstraint.activate([
+            plusButton.centerYAnchor.constraint(equalTo: stackButtons.centerYAnchor),
+            plusButton.trailingAnchor.constraint(equalTo: navigationView.trailingAnchor, constant: -16),
+            plusButton.widthAnchor.constraint(equalToConstant: 38)
+        ])
         
+        tableView.translatesAutoresizingMaskIntoConstraints = false
         containerView.addSubview(tableView)
-        tableView.snp.makeConstraints {
-            $0.top.equalTo(navigationView.snp.bottom).offset(18)
-            $0.leading.equalTo(containerView.snp.leading)
-            $0.trailing.equalTo(containerView.snp.trailing)
-            $0.bottom.equalTo(containerView.snp.bottom).offset(-16)
-            tableViewHeightConstraint = $0.height.equalTo(1).constraint
-        }
+        tableViewHeightConstraint = tableView.heightAnchor.constraint(equalToConstant: 1)
+        NSLayoutConstraint.activate([
+            tableView.topAnchor.constraint(equalTo: navigationView.bottomAnchor, constant: 18),
+            tableView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -16),
+            tableViewHeightConstraint!
+        ])
         
+        marsEmptyView.translatesAutoresizingMaskIntoConstraints = false
         containerView.addSubview(marsEmptyView)
-        marsEmptyView.snp.makeConstraints {
-            $0.top.equalTo(navigationView.snp.bottom).offset(250)
-            $0.centerX.equalTo(containerView.snp.centerX)
-        }
+        NSLayoutConstraint.activate([
+            marsEmptyView.topAnchor.constraint(equalTo: navigationView.bottomAnchor, constant: 250),
+            marsEmptyView.centerXAnchor.constraint(equalTo: containerView.centerXAnchor)
+        ])
     }
 }
 

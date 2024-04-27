@@ -38,22 +38,29 @@ class MarsEmptyView: UIView {
     
     private func setConstraints() {
         addSubview(containerView)
-        containerView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
-        }
+        containerView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            containerView.topAnchor.constraint(equalTo: topAnchor),
+            containerView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            containerView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            containerView.bottomAnchor.constraint(equalTo: bottomAnchor)
+        ])
         
         containerView.addSubview(imageView)
-        imageView.snp.makeConstraints {
-            $0.centerY.equalTo(containerView.snp.centerY)
-            $0.centerX.equalTo(containerView.snp.centerX)
-            $0.height.width.equalTo(145)
-        }
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            imageView.centerYAnchor.constraint(equalTo: containerView.centerYAnchor),
+            imageView.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
+            imageView.heightAnchor.constraint(equalToConstant: 145),
+            imageView.widthAnchor.constraint(equalTo: imageView.heightAnchor)
+        ])
         
         containerView.addSubview(title)
-        title.snp.makeConstraints {
-            $0.centerX.equalTo(containerView.snp.centerX)
-            $0.top.equalTo(imageView.snp.bottom).offset(16)
-        }
+        title.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            title.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
+            title.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 16)
+        ])
     }
 }
 
